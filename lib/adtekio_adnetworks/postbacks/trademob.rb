@@ -1,13 +1,17 @@
 class AdtekioAdnetworks::Postbacks::Trademob < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    []
+  end
+
   define_postback_for :android, :mac do
     { :url => "https://graph.trademob.com/apps/android/@{event.bundleid}@/sessions/@{params[:mid]}@",
       :params => {
         :android_id => "@{params[:android_id]}@",
         :click_id => "@{params[:click]}@"
       },
-      
+
     }
   end
 

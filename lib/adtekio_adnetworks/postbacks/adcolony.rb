@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::Adcolony < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    [:api_key]
+  end
+
   define_postback_for :android, :mac do
     { :url => "https://cpa.adcolony.com:443/on_user_action",
       :params => {
@@ -9,7 +13,7 @@ class AdtekioAdnetworks::Postbacks::Adcolony < AdtekioAdnetworks::BasePostbackCl
         :product_id => "@{event.bundleid}@",
         :raw_android_id => "@{event.android_id}@"
       },
-      
+
     }
   end
 
@@ -20,7 +24,7 @@ class AdtekioAdnetworks::Postbacks::Adcolony < AdtekioAdnetworks::BasePostbackCl
         :product_id => "@{event.appleid}@",
         :raw_advertising_id => "@{event.adid}@"
       },
-      
+
     }
   end
 

@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::Bidmotion < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    [:advnid]
+  end
+
   define_postback_for :ios, :mac do
     { :url => "http://engine.mobdone.com/conversion",
       :params => {

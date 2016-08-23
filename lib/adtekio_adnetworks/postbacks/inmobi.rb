@@ -1,13 +1,17 @@
 class AdtekioAdnetworks::Postbacks::Inmobi < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    [:company]
+  end
+
   define_postback_for :android, :mac do
     { :url => "http://ma.inmobi.com/downloads/trackerV1/@{netcfg.company}@",
       :params => {
         :android_id => "@{params[:android_id]}@",
         :impid => "@{params[:click]}@"
       },
-      
+
     }
   end
 

@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::AdjaponNend < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    []
+  end
+
   define_postback_for :all, :mac do
     { :url => "https://s.nend.net:443/api/conversion.php",
       :params => {

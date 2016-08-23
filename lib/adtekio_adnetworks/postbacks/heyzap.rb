@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::Heyzap < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    [:game_id,:secret_key]
+  end
+
   define_postback_for :ios, :mac do
     { :url => "http://www.heyzap.com/cpi_callback/new_install",
       :params => {

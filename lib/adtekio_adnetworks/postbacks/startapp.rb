@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::Startapp < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    [:company]
+  end
+
   define_postback_for :android, :mac do
     { :url => "http://www.startappinstalls.com/trackinstall/@{netcfg.company}@",
       :params => {

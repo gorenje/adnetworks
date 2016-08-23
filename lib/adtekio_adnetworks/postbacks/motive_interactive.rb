@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::MotiveInteractive < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    [:o]
+  end
+
   define_postback_for :android, :mac do
     { :url => "http://traktum.com/p.ashx",
       :params => {
@@ -9,7 +13,7 @@ class AdtekioAdnetworks::Postbacks::MotiveInteractive < AdtekioAdnetworks::BaseP
         :r => "@{params[:click]}@",
         :t => "@{event.gadid}@"
       },
-      
+
     }
   end
 
@@ -21,7 +25,7 @@ class AdtekioAdnetworks::Postbacks::MotiveInteractive < AdtekioAdnetworks::BaseP
         :r => "@{params[:click]}@",
         :t => "@{event.adid}@"
       },
-      
+
     }
   end
 

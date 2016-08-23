@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::Liftoff < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    [:app_id]
+  end
+
   define_postback_for :ios, :mac do
     { :url => "http://analytics.liftoff.io/customer_tracker/v1/@{netcfg.app_id}@/events",
       :params => {

@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::CyberagentNend < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    [:app_id]
+  end
+
   define_postback_for :ios, :mac do
     { :url => "https://c1.nend.net/api/conversion.php",
       :params => {

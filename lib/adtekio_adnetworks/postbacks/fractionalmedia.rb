@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::Fractionalmedia < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    [:advertiser_id]
+  end
+
   define_postback_for :android, :mac do
     { :url => "http://acristavus.fractionalmedia.com/conversion_v2_bin",
       :params => {

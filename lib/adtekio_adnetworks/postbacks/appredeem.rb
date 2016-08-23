@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::Appredeem < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    [:appid,:ssk]
+  end
+
   define_postback_for :android, :mac do
     { :url => "http://d1.appredeem.com/redeem_android.php",
       :params => {
@@ -9,7 +13,7 @@ class AdtekioAdnetworks::Postbacks::Appredeem < AdtekioAdnetworks::BasePostbackC
         :ip => "@{event.ip}@",
         :ssk => "@{netcfg.ssk}@"
       },
-      
+
     }
   end
 

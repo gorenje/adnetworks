@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::Matomy < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    []
+  end
+
   define_postback_for :android, :mac do
     { :url => "http://network.adsmarket.com/cevent",
       :params => {
@@ -9,7 +13,7 @@ class AdtekioAdnetworks::Postbacks::Matomy < AdtekioAdnetworks::BasePostbackClas
         :type => "lead",
         :visitor_cid => "@{params[:click]}@"
       },
-      
+
     }
   end
 

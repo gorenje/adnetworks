@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::Mopub < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    []
+  end
+
   define_postback_for :ios, :mac do
     { :url => "http://ads.mopub.com/m/open",
       :params => {
@@ -8,7 +12,7 @@ class AdtekioAdnetworks::Postbacks::Mopub < AdtekioAdnetworks::BasePostbackClass
         :udid => "@{event.adid}@",
         :id => "@{event.bundleid}@"
       },
-      
+
     }
   end
 
@@ -19,7 +23,7 @@ class AdtekioAdnetworks::Postbacks::Mopub < AdtekioAdnetworks::BasePostbackClass
         :udid => "@{event.gadid}@",
         :id => "@{event.bundleid}@"
       },
-      
+
     }
   end
 

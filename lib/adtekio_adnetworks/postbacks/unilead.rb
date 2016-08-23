@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::Unilead < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    [:app_id]
+  end
+
   define_postback_for :ios, :mac do
     { :url => "http://go.unilead.net/SP1AB",
       :params => {
@@ -68,7 +72,7 @@ class AdtekioAdnetworks::Postbacks::Unilead < AdtekioAdnetworks::BasePostbackCla
       :params => {
         :transaction_id => "@{params[:click]}@"
       },
-      
+
     }
   end
 

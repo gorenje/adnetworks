@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::Adquant < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    [:callback_id]
+  end
+
   define_postback_for :all, :ist do
     { :url => "http://s.mb4w.com/cb/@{netcfg.callback_id}@",
       :params => {
@@ -12,7 +16,7 @@ class AdtekioAdnetworks::Postbacks::Adquant < AdtekioAdnetworks::BasePostbackCla
         :user_os => "@{params[:osversion]}@",
         :user_country => "@{event.country}@"
       },
-      
+
     }
   end
 
@@ -28,7 +32,7 @@ class AdtekioAdnetworks::Postbacks::Adquant < AdtekioAdnetworks::BasePostbackCla
         :amount => "@{event.revenue}@",
         :currency => "USD"
       },
-      
+
     }
   end
 

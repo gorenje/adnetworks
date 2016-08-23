@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::FiksuApplift < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    [:app_name,:appid,:company_id,:package_name]
+  end
+
   define_postback_for :ios, :ist do
     { :url => "https://a.fiksu.com/@{netcfg.company_id}@/ios/@{netcfg.package_name}@/event",
       :params => {

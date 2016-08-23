@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::Targetcircle < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    []
+  end
+
   define_postback_for :all, :mac do
     { :url => "http://p.trackmytarget.com/",
       :params => {

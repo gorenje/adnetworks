@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::Appsfire < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    [:appid,:source]
+  end
+
   define_postback_for :all, :mac do
     { :url => "http://getap.ps/callback.php",
       :params => {
@@ -9,7 +13,7 @@ class AdtekioAdnetworks::Postbacks::Appsfire < AdtekioAdnetworks::BasePostbackCl
         :ip => "@{event.ip}@",
         :source => "@{netcfg.source}@"
       },
-      
+
     }
   end
 

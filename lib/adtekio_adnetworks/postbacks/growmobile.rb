@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::Growmobile < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    [:app_key]
+  end
+
   define_postback_for :ios, :mac do
     { :url => "https://api.growmobile.com/tracking/open",
       :params => {
@@ -11,7 +15,7 @@ class AdtekioAdnetworks::Postbacks::Growmobile < AdtekioAdnetworks::BasePostback
         :signature => "",
         :click_id => "@{params[:click]}@"
       },
-      
+
     }
   end
 
@@ -25,7 +29,7 @@ class AdtekioAdnetworks::Postbacks::Growmobile < AdtekioAdnetworks::BasePostback
         :signature => "",
         :click_id => "@{params[:click]}@"
       },
-      
+
     }
   end
 

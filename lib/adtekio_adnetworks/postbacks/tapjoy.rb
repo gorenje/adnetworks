@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::Tapjoy < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    [:app_id]
+  end
+
   define_postback_for :ios, :mac do
     { :url => "https://ws.tapjoyads.com/log_device_app",
       :params => {
@@ -26,7 +30,7 @@ class AdtekioAdnetworks::Postbacks::Tapjoy < AdtekioAdnetworks::BasePostbackClas
         :sdk_type => "connect",
         :sha1_mac_address => "<%=Digest::SHA1.hexdigest(params[:mid])%>"
       },
-      
+
     }
   end
 

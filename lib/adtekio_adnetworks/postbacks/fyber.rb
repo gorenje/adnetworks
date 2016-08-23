@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::Fyber < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    [:appid]
+  end
+
   define_postback_for :ios, :mac do
     { :url => "http://service.sponsorpay.com/installs/v2",
       :params => {
@@ -11,7 +15,7 @@ class AdtekioAdnetworks::Postbacks::Fyber < AdtekioAdnetworks::BasePostbackClass
         :ip => "@{event.ip}@",
         :subid => "@{params[:click]}@"
       },
-      
+
     }
   end
 
@@ -25,7 +29,7 @@ class AdtekioAdnetworks::Postbacks::Fyber < AdtekioAdnetworks::BasePostbackClass
         :ip => "@{event.ip}@",
         :subid => "@{params[:click]}@"
       },
-      
+
     }
   end
 

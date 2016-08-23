@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::Jampp < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    []
+  end
+
   define_postback_for :ios, :mac do
     { :url => "http://tracking.jampp.com/postback",
       :params => {

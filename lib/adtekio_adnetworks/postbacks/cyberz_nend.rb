@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::CyberzNend < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    [:app_id]
+  end
+
   define_postback_for :ios, :mac do
     { :url => "http://c1.nend.net/api/conversion.php",
       :params => {
@@ -8,7 +12,7 @@ class AdtekioAdnetworks::Postbacks::CyberzNend < AdtekioAdnetworks::BasePostback
         :idfa => "@{event.adid}@",
         :app_id => "@{netcfg.app_id}@"
       },
-      
+
     }
   end
 
@@ -19,7 +23,7 @@ class AdtekioAdnetworks::Postbacks::CyberzNend < AdtekioAdnetworks::BasePostback
         :from => "ads",
         :app_id => "@{netcfg.app_id}@"
       },
-      
+
     }
   end
 

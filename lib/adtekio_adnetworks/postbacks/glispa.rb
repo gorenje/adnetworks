@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::Glispa < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    []
+  end
+
   define_postback_for :android, :mac do
     { :url => "http://glispatrack.com/sp/mp.php",
       :params => {

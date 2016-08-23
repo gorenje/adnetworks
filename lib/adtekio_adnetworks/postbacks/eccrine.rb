@@ -1,12 +1,16 @@
 class AdtekioAdnetworks::Postbacks::Eccrine < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    [:key,:partner,:adid]
+  end
+
   define_postback_for :ios, :mac do
     { :url => "https://tracking.adtek.io/click/41/go",
       :params => {
         :adid => "@{netcfg.adid}@"
       },
-      
+
     }
   end
 
@@ -15,7 +19,7 @@ class AdtekioAdnetworks::Postbacks::Eccrine < AdtekioAdnetworks::BasePostbackCla
       :params => {
         :adid => "@{netcfg.adid}@"
       },
-      
+
     }
   end
 
@@ -34,7 +38,7 @@ class AdtekioAdnetworks::Postbacks::Eccrine < AdtekioAdnetworks::BasePostbackCla
         :ts => "@{params[:tscreated]}@",
         :data => "@{params[:version]}@"
       },
-      
+
     }
   end
 
@@ -53,7 +57,7 @@ class AdtekioAdnetworks::Postbacks::Eccrine < AdtekioAdnetworks::BasePostbackCla
         :ts => "@{params[:tscreated]}@",
         :data => "@{params[:version]}@"
       },
-      
+
     }
   end
 
@@ -74,7 +78,7 @@ class AdtekioAdnetworks::Postbacks::Eccrine < AdtekioAdnetworks::BasePostbackCla
         :currency => "USD",
         :data => "@{params[:version]}@"
       },
-      
+
     }
   end
 

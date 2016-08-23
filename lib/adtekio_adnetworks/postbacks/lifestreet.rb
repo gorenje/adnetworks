@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::Lifestreet < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    []
+  end
+
   define_postback_for :ios, :mac do
     { :url => "http://mobile.lfstmedia.com/ios01/install",
       :params => {

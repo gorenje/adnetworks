@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::Realzeit < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    [:c,:cr]
+  end
+
   define_postback_for :ios, :ist do
     { :url => "https://t-eu.realzeit.io:443/r/api",
       :params => {

@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::Vungle < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    [:app_id]
+  end
+
   define_postback_for :android, :mac do
     { :url => "http://api.vungle.com/api/v3/new",
       :params => {
@@ -10,7 +14,7 @@ class AdtekioAdnetworks::Postbacks::Vungle < AdtekioAdnetworks::BasePostbackClas
         :event_id => "@{params[:click]}@",
         :conversion => "1"
       },
-      
+
     }
   end
 
@@ -22,7 +26,7 @@ class AdtekioAdnetworks::Postbacks::Vungle < AdtekioAdnetworks::BasePostbackClas
         :event_id => "@{params[:click]}@",
         :conversion => "1"
       },
-      
+
     }
   end
 

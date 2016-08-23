@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::Chartboost < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    [:api_secret,:api_token,:app_id]
+  end
+
   define_postback_for :ios, :mac do
     { :url => "https://live.chartboost.com/api/v1/install.json",
       :params => {

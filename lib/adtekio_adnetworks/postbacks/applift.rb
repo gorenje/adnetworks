@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::Applift < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    [:source]
+  end
+
   define_postback_for :ios, :mac do
     { :url => "http://hitfox.go2cloud.org/aff_lsr",
       :params => {

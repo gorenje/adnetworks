@@ -1,6 +1,10 @@
 class AdtekioAdnetworks::Postbacks::Neverblue < AdtekioAdnetworks::BasePostbackClass
   include AdtekioAdnetworks::BasePostbacks
 
+  define_network_config do
+    []
+  end
+
   define_postback_for :all, :mac do
     { :url => "http://cjsab.com/p.ashx",
       :params => {
@@ -8,7 +12,7 @@ class AdtekioAdnetworks::Postbacks::Neverblue < AdtekioAdnetworks::BasePostbackC
         :f => "pb",
         :r => "@{params[:click]}@"
       },
-      
+
     }
   end
 
