@@ -1,0 +1,17 @@
+class AdtekioAdnetworks::Postbacks::Adcash < AdtekioAdnetworks::BasePostbackClass
+  include AdtekioAdnetworks::BasePostbacks
+
+  define_postback_for :ios, :mac do
+    { :url => "http://www.adcash.com/script/register_event.php",
+      :params => {
+        :campagne => "@{netcfg.campagne}@",
+        :cid => "@{params[:click]}@",
+        :idform => "@{netcfg.idform}@",
+        :key => "@{netcfg.key}@",
+        :variable => "@{Digest::SHA1.hexdigest(params[:mid])}@"
+      },
+      
+    }
+  end
+
+end

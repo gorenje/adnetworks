@@ -9,6 +9,7 @@ gem 'mechanize'
 gem 'google-adwords-api'
 gem 'google-api-client'
 gem 'curb'
+gem 'uuidtools'
 
 group :development do
   gem 'jeweler'
