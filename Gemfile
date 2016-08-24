@@ -10,6 +10,7 @@ gem 'google-adwords-api'
 gem 'google-api-client'
 gem 'curb'
 gem 'uuidtools'
+gem 'erubis'
 
 group :development do
   gem 'jeweler'
