@@ -9,9 +9,9 @@ class AdtekioAdnetworks::Postbacks::Mmg < AdtekioAdnetworks::BasePostbackClass
     { :url => "http://srv6.marsads.com/srv/px.php",
       :params => {
         :adv_id => "@{netcfg.adv_id}@",
-        :pt => "0",
-        :subid => "@{params[:click]}@",
-        :t => "0"
+        :pt     => "0",
+        :subid  => "@{params[:click]}@",
+        :t      => "0"
       },
 
     }

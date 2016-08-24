@@ -8,12 +8,12 @@ class AdtekioAdnetworks::Postbacks::Adquant < AdtekioAdnetworks::BasePostbackCla
   define_postback_for :all, :ist do
     { :url => "http://s.mb4w.com/cb/@{netcfg.callback_id}@",
       :params => {
-        :ifcontext => "",
-        :order_id => "@{event.adid}@",
-        :mmp => "true",
-        :mid => "@{event.device_id}@",
-        :user_device => "@{event.device}@",
-        :user_os => "@{params[:osversion]}@",
+        :ifcontext    => "",
+        :order_id     => "@{event.adid}@",
+        :mmp          => "true",
+        :mid          => "@{event.device_id}@",
+        :user_device  => "@{event.device}@",
+        :user_os      => "@{params[:osversion]}@",
         :user_country => "@{event.country}@"
       },
 
@@ -23,14 +23,14 @@ class AdtekioAdnetworks::Postbacks::Adquant < AdtekioAdnetworks::BasePostbackCla
   define_postback_for :all, :pay do
     { :url => "http://s.mb4w.com/cb/@{netcfg.callback_id}@",
       :params => {
-        :ifcontext => "",
-        :order_id => "@{event.adid}@",
-        :mid => "@{params[:mid]}@",
-        :user_device => "@{params[:device]}@",
-        :user_os => "@{params[:osversion]}@",
+        :ifcontext    => "",
+        :order_id     => "@{event.adid}@",
+        :mid          => "@{params[:mid]}@",
+        :user_device  => "@{params[:device]}@",
+        :user_os      => "@{params[:osversion]}@",
         :user_country => "@{event.country}@",
-        :amount => "@{event.revenue}@",
-        :currency => "USD"
+        :amount       => "@{event.revenue}@",
+        :currency     => "USD"
       },
 
     }

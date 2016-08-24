@@ -10,7 +10,6 @@ class AdtekioAdnetworks::Postbacks::Adxperience < AdtekioAdnetworks::BasePostbac
       :params => {
         :transaction_id => "@{params[:click]}@"
       },
-
     }
   end
 

@@ -8,8 +8,8 @@ class AdtekioAdnetworks::Postbacks::Adperio < AdtekioAdnetworks::BasePostbackCla
   define_postback_for :all, :mac do
     { :url => "http://www.media970.com/cevent",
       :params => {
-        :programid => "@{netcfg.programid}@",
-        :type => "lead",
+        :programid   => "@{netcfg.programid}@",
+        :type        => "lead",
         :visitor_cid => "@{params[:click]}@"
       },
 

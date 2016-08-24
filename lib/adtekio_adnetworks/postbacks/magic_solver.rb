@@ -8,7 +8,7 @@ class AdtekioAdnetworks::Postbacks::MagicSolver < AdtekioAdnetworks::BasePostbac
   define_postback_for :ios, :mac do
     { :url => "http://api.magicsolver.com/iphone/apps/free_app_magic/register_idfa/get/",
       :params => {
-        :idfa => "@{event.adid}@",
+        :idfa      => "@{event.adid}@",
         :partnerID => "@{params[:partner_data]}@"
       },
 

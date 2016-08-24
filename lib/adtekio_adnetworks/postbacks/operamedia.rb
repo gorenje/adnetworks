@@ -8,7 +8,7 @@ class AdtekioAdnetworks::Postbacks::Operamedia < AdtekioAdnetworks::BasePostback
   define_postback_for :ios, :mac do
     { :url => "http://www.mobileitmedia.in/tl.php",
       :params => {
-        :s2s => "",
+        :s2s     => "",
         :transid => "@{params[:click]}@"
       },
       :store_user => true
@@ -19,7 +19,7 @@ class AdtekioAdnetworks::Postbacks::Operamedia < AdtekioAdnetworks::BasePostback
     { :url => "http://www.mobileitmedia.in/events.php",
       :params => {
         :transid => "@{user.click_data[:click]}@",
-        :var1 => "tutorial"
+        :var1    => "tutorial"
       },
       :user_required => true,
       :check => "event.params[:funnel_step] == 'open_tutorial'"
@@ -30,7 +30,7 @@ class AdtekioAdnetworks::Postbacks::Operamedia < AdtekioAdnetworks::BasePostback
     { :url => "http://www.mobileitmedia.in/events.php",
       :params => {
         :transid => "@{user.click_data[:click]}@",
-        :var2 => "purchase"
+        :var2    => "purchase"
       },
       :user_required => true
     }

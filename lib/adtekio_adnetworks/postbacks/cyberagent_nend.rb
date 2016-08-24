@@ -9,7 +9,7 @@ class AdtekioAdnetworks::Postbacks::CyberagentNend < AdtekioAdnetworks::BasePost
     { :url => "https://c1.nend.net/api/conversion.php",
       :params => {
         :app_id => "@{netcfg.app_id}@",
-        :idfa => "@{event.adid}@",
+        :idfa   => "@{event.adid}@",
         :nendid => "@{params[:click]}@"
       },
       :store_user => true
@@ -31,7 +31,7 @@ class AdtekioAdnetworks::Postbacks::CyberagentNend < AdtekioAdnetworks::BasePost
       :params => {
         :nendid => "@{user.click_data['click']}@",
         :nendcv => "3",
-        :price => "@{event.revenue}@"
+        :price  => "@{event.revenue}@"
       },
       :user_required => true
     }

@@ -8,9 +8,9 @@ class AdtekioAdnetworks::Postbacks::Nativex < AdtekioAdnetworks::BasePostbackCla
   define_postback_for :ios, :mac do
     { :url => "http://api.w3i.com/PublicServices/MobileTrackingApiRestV1.svc/AppWasRunV2",
       :params => {
-        :AppId => "@{netcfg.app_id}@",
+        :AppId    => "@{netcfg.app_id}@",
         :clientIp => "@{event.ip}@",
-        :iOSIDFA => "@{event.adid}@"
+        :iOSIDFA  => "@{event.adid}@"
       },
 
     }
@@ -19,8 +19,8 @@ class AdtekioAdnetworks::Postbacks::Nativex < AdtekioAdnetworks::BasePostbackCla
   define_postback_for :android, :mac do
     { :url => "http://api.w3i.com/PublicServices/MobileTrackingApiRestV1.svc/AppWasRunV2",
       :params => {
-        :AppId => "@{netcfg.app_id}@",
-        :clientIp => "@{event.ip}@",
+        :AppId       => "@{netcfg.app_id}@",
+        :clientIp    => "@{event.ip}@",
         :AndroidIDFA => "@{event.gadid}@"
       },
 

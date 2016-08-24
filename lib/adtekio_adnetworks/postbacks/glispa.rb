@@ -8,9 +8,9 @@ class AdtekioAdnetworks::Postbacks::Glispa < AdtekioAdnetworks::BasePostbackClas
   define_postback_for :android, :mac do
     { :url => "http://glispatrack.com/sp/mp.php",
       :params => {
-        :clickID => "@{params[:click]}@",
+        :clickID  => "@{params[:click]}@",
         :deviceid => "@{params[:mid]}@",
-        :oid => "@{Digest::SHA1.hexdigest(params[:android_id])}@",
+        :oid      => "@{Digest::SHA1.hexdigest(params[:android_id])}@",
         :deviceip => "@{event.ip}@"
       },
       :check => "!event.params[:click].nil?",
@@ -21,11 +21,11 @@ class AdtekioAdnetworks::Postbacks::Glispa < AdtekioAdnetworks::BasePostbackClas
   define_postback_for :android, :fun do
     { :url => "http://glispatrack.com/sp/mp.php",
       :params => {
-        :clickid => "@{user.click_data['click']}@",
-        :type => "multi",
-        :step => "2",
-        :eventid => "tutorial",
-        :oid => "@{user.click_data['android_id']}@",
+        :clickid  => "@{user.click_data['click']}@",
+        :type     => "multi",
+        :step     => "2",
+        :eventid  => "tutorial",
+        :oid      => "@{user.click_data['android_id']}@",
         :deviceip => "@{event.ip}@"
       },
       :user_required => true,
@@ -36,13 +36,13 @@ class AdtekioAdnetworks::Postbacks::Glispa < AdtekioAdnetworks::BasePostbackClas
   define_postback_for :android, :pay do
     { :url => "http://glispatrack.com/sp/mp.php",
       :params => {
-        :clickid => "@{user.click_data['click']}@",
-        :type => "multi",
-        :step => "2",
-        :eventid => "purchase",
-        :oid => "@{user.click_data['android_id']}@",
-        :deviceip => "@{event.ip}@",
-        :revenue_amount => "@{event.revenue}@",
+        :clickid          => "@{user.click_data['click']}@",
+        :type             => "multi",
+        :step             => "2",
+        :eventid          => "purchase",
+        :oid              => "@{user.click_data['android_id']}@",
+        :deviceip         => "@{event.ip}@",
+        :revenue_amount   => "@{event.revenue}@",
         :revenue_currency => "USD"
       },
       :user_required => true
@@ -52,9 +52,9 @@ class AdtekioAdnetworks::Postbacks::Glispa < AdtekioAdnetworks::BasePostbackClas
   define_postback_for :ios, :mac do
     { :url => "http://glispatrack.com/sp/mp.php",
       :params => {
-        :clickID => "@{params[:click]}@",
+        :clickID  => "@{params[:click]}@",
         :deviceid => "@{params[:mid]}@",
-        :oid => "@{params[:emid]}@",
+        :oid      => "@{params[:emid]}@",
         :deviceip => "@{event.ip}@"
       },
       :check => "!event.params[:click].nil?",
@@ -65,11 +65,11 @@ class AdtekioAdnetworks::Postbacks::Glispa < AdtekioAdnetworks::BasePostbackClas
   define_postback_for :ios, :fun do
     { :url => "http://glispatrack.com/sp/mp.php",
       :params => {
-        :clickid => "@{user.click_data['click']}@",
-        :type => "multi",
-        :step => "2",
-        :eventid => "tutorial",
-        :oid => "@{user.click_data['emid']}@",
+        :clickid  => "@{user.click_data['click']}@",
+        :type     => "multi",
+        :step     => "2",
+        :eventid  => "tutorial",
+        :oid      => "@{user.click_data['emid']}@",
         :deviceip => "@{event.ip}@"
       },
       :user_required => true,
@@ -80,13 +80,13 @@ class AdtekioAdnetworks::Postbacks::Glispa < AdtekioAdnetworks::BasePostbackClas
   define_postback_for :ios, :pay do
     { :url => "http://glispatrack.com/sp/mp.php",
       :params => {
-        :clickid => "@{user.click_data['click']}@",
-        :type => "multi",
-        :step => "2",
-        :eventid => "purchase",
-        :oid => "@{user.click_data['emid']}@",
-        :deviceip => "@{event.ip}@",
-        :revenue_amount => "@{event.revenue}@",
+        :clickid          => "@{user.click_data['click']}@",
+        :type             => "multi",
+        :step             => "2",
+        :eventid          => "purchase",
+        :oid              => "@{user.click_data['emid']}@",
+        :deviceip         => "@{event.ip}@",
+        :revenue_amount   => "@{event.revenue}@",
         :revenue_currency => "USD"
       },
       :user_required => true

@@ -19,11 +19,11 @@ class AdtekioAdnetworks::Postbacks::Playhaven < AdtekioAdnetworks::BasePostbackC
     sig4 = (Base64.encode64(hmac.digest).gsub(/(=|==)$/,"").gsub("+","-").
             gsub("/","_").chomp)
 
-    { :token => netcfg.token,
-      :tracking => event.adid.nil? ? "0" : "1",
-      :nonce => nonce.to_s,
+    { :token         => netcfg.token,
+      :tracking      => event.adid.nil? ? "0" : "1",
+      :nonce         => nonce.to_s,
       :ph_conversion => 1,
-      :sig4 => sig4.to_s
+      :sig4          => sig4.to_s
     }.tap do |hsh|
       hsh.merge!(:ifa => event.adid) unless event.adid.nil?
     end

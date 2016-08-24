@@ -9,9 +9,9 @@ class AdtekioAdnetworks::Postbacks::Appredeem < AdtekioAdnetworks::BasePostbackC
     { :url => "http://d1.appredeem.com/redeem_android.php",
       :params => {
         :appid => "@{netcfg.appid}@",
-        :asid => "@{params[:click]}@",
-        :ip => "@{event.ip}@",
-        :ssk => "@{netcfg.ssk}@"
+        :asid  => "@{params[:click]}@",
+        :ip    => "@{event.ip}@",
+        :ssk   => "@{netcfg.ssk}@"
       },
 
     }
@@ -21,10 +21,10 @@ class AdtekioAdnetworks::Postbacks::Appredeem < AdtekioAdnetworks::BasePostbackC
     { :url => "http://d1.appredeem.com/redeem.php",
       :params => {
         :appid => "@{netcfg.appid}@",
-        :asid => "@{params[:click]}@",
-        :idfa => "@{event.adid}@",
-        :ip => "@{event.ip}@",
-        :ssk => "@{netcfg.ssk}@"
+        :asid  => "@{params[:click]}@",
+        :idfa  => "@{event.adid}@",
+        :ip    => "@{event.ip}@",
+        :ssk   => "@{netcfg.ssk}@"
       },
       :check => "!event.adid.nil?"
     }

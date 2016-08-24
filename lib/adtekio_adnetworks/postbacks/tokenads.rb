@@ -9,7 +9,7 @@ class AdtekioAdnetworks::Postbacks::Tokenads < AdtekioAdnetworks::BasePostbackCl
     { :url => "http://offers.tokenads.com/pixel/@{netcfg.adv_id}@",
       :params => {
         :remote_id => "@{sha1(params[:mid])}@",
-        :tid => "@{params[:click]}@"
+        :tid       => "@{params[:click]}@"
       },
 
     }

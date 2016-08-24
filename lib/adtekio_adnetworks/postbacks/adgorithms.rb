@@ -17,10 +17,10 @@ class AdtekioAdnetworks::Postbacks::Adgorithms < AdtekioAdnetworks::BasePostback
   define_postback_for :ios, :apo do
     { :url => "http://mobiletracking.adgorithms.com/aff_goal",
       :params => {
-        :a => "lsr",
-        :goal_id => "@{params[:ad]}@",
+        :a              => "lsr",
+        :goal_id        => "@{params[:ad]}@",
         :transaction_id => "@{user.click_data['click']}@",
-        :adv_sub => "retention"
+        :adv_sub        => "retention"
       },
       :user_required => true
     }
@@ -29,10 +29,10 @@ class AdtekioAdnetworks::Postbacks::Adgorithms < AdtekioAdnetworks::BasePostback
   define_postback_for :ios, :pay do
     { :url => "http://mobiletracking.adgorithms.com/aff_goal",
       :params => {
-        :a => "lsr",
-        :goal_id => "@{params[:partner_data]}@",
+        :a              => "lsr",
+        :goal_id        => "@{params[:partner_data]}@",
         :transaction_id => "@{user.click_data['click']}@",
-        :adv_sub => "@{event.revenue}@"
+        :adv_sub        => "@{event.revenue}@"
       },
       :user_required => true
     }
@@ -50,10 +50,10 @@ class AdtekioAdnetworks::Postbacks::Adgorithms < AdtekioAdnetworks::BasePostback
   define_postback_for :android, :apo do
     { :url => "http://mobiletracking.adgorithms.com/aff_goal",
       :params => {
-        :a => "lsr",
-        :goal_id => "@{params[:ad]}@",
+        :a              => "lsr",
+        :goal_id        => "@{params[:ad]}@",
         :transaction_id => "@{user.click_data['click']}@",
-        :adv_sub => "retention"
+        :adv_sub        => "retention"
       },
       :user_required => true
     }
@@ -62,10 +62,10 @@ class AdtekioAdnetworks::Postbacks::Adgorithms < AdtekioAdnetworks::BasePostback
   define_postback_for :android, :pay do
     { :url => "http://mobiletracking.adgorithms.com/aff_goal",
       :params => {
-        :a => "lsr",
-        :goal_id => "@{params[:partner_data]}@",
+        :a              => "lsr",
+        :goal_id        => "@{params[:partner_data]}@",
         :transaction_id => "@{user.click_data['click']}@",
-        :adv_sub => "@{event.revenue}@"
+        :adv_sub        => "@{event.revenue}@"
       },
       :user_required => true
     }

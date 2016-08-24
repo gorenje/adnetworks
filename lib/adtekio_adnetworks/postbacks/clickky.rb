@@ -9,8 +9,8 @@ class AdtekioAdnetworks::Postbacks::Clickky < AdtekioAdnetworks::BasePostbackCla
     { :url => "http://www.cpactions.com/offers/noredirect.complete/s2s",
       :params => {
         :android_id => "@{params[:android_id]}@",
-        :idfa => "@{event.adid}@",
-        :uid => "@{params[:click]}@"
+        :idfa       => "@{event.adid}@",
+        :uid        => "@{params[:click]}@"
       },
 
     }
@@ -20,8 +20,8 @@ class AdtekioAdnetworks::Postbacks::Clickky < AdtekioAdnetworks::BasePostbackCla
     { :url => "http://www.cpactions.com/offers/noredirect.complete/s2s",
       :params => {
         :android_id => "@{params[:android_id]}@",
-        :idfa => "@{event.adid}@",
-        :uid => "@{params[:click]}@"
+        :idfa       => "@{event.adid}@",
+        :uid        => "@{params[:click]}@"
       },
 
     }

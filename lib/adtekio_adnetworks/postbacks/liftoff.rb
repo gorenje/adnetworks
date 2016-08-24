@@ -9,16 +9,16 @@ class AdtekioAdnetworks::Postbacks::Liftoff < AdtekioAdnetworks::BasePostbackCla
     { :url => "http://analytics.liftoff.io/customer_tracker/v1/@{netcfg.app_id}@/events",
       :params => {
         :third_party_tracking_token => "@{params[:click]}@",
-        :client_ip => "@{event.ip}@",
-        :idfa => "@{event.adid}@",
-        :event_name => "install",
-        :event_timestamp => "@{params[:tscreated]}@",
-        :app_version => "@{params[:appversion]}@",
-        :bundle_id => "@{event.bundleid}@",
-        :is_attributed => "true",
-        :do_not_track => "false",
-        :platform => "ios",
-        :os_version => "@{params[:osversion]}@"
+        :client_ip                  => "@{event.ip}@",
+        :idfa                       => "@{event.adid}@",
+        :event_name                 => "install",
+        :event_timestamp            => "@{params[:tscreated]}@",
+        :app_version                => "@{params[:appversion]}@",
+        :bundle_id                  => "@{event.bundleid}@",
+        :is_attributed              => "true",
+        :do_not_track               => "false",
+        :platform                   => "ios",
+        :os_version                 => "@{params[:osversion]}@"
       },
       :store_user => true
     }
@@ -28,15 +28,15 @@ class AdtekioAdnetworks::Postbacks::Liftoff < AdtekioAdnetworks::BasePostbackCla
     { :url => "http://analytics.liftoff.io/customer_tracker/v1/@{netcfg.app_id}@/events",
       :params => {
         :third_party_tracking_token => "@{user.click_data['click']}@",
-        :client_ip => "@{event.ip}@",
-        :idfa => "@{event.adid}@",
-        :event_name => "tutorial",
-        :event_timestamp => "@{params[:tscreated]}@",
-        :app_version => "@{params[:version]}@",
-        :is_attributed => "true",
-        :do_not_track => "false",
-        :platform => "ios",
-        :os_version => "@{params[:osversion]}@"
+        :client_ip                  => "@{event.ip}@",
+        :idfa                       => "@{event.adid}@",
+        :event_name                 => "tutorial",
+        :event_timestamp            => "@{params[:tscreated]}@",
+        :app_version                => "@{params[:version]}@",
+        :is_attributed              => "true",
+        :do_not_track               => "false",
+        :platform                   => "ios",
+        :os_version                 => "@{params[:osversion]}@"
       },
       :user_required => true,
       :check => "event.params[:funnel_step] == 'funnel_complete'"
@@ -47,17 +47,17 @@ class AdtekioAdnetworks::Postbacks::Liftoff < AdtekioAdnetworks::BasePostbackCla
     { :url => "http://analytics.liftoff.io/customer_tracker/v1/@{netcfg.app_id}@/events",
       :params => {
         :third_party_tracking_token => "@{user.click_data['click']}@",
-        :client_ip => "@{event.ip}@",
-        :idfa => "@{event.adid}@",
-        :event_name => "purchase",
-        :event_timestamp => "@{params[:tscreated]}@",
-        :app_version => "@{params[:version]}@",
-        :is_attributed => "true",
-        :do_not_track => "false",
-        :platform => "ios",
-        :os_version => "@{params[:osversion]}@",
-        :revenue => "@{event.revenue}@",
-        :currency_code => "usd"
+        :client_ip                  => "@{event.ip}@",
+        :idfa                       => "@{event.adid}@",
+        :event_name                 => "purchase",
+        :event_timestamp            => "@{params[:tscreated]}@",
+        :app_version                => "@{params[:version]}@",
+        :is_attributed              => "true",
+        :do_not_track               => "false",
+        :platform                   => "ios",
+        :os_version                 => "@{params[:osversion]}@",
+        :revenue                    => "@{event.revenue}@",
+        :currency_code              => "usd"
       },
       :user_required => true
     }

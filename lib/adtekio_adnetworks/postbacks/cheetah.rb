@@ -9,9 +9,9 @@ class AdtekioAdnetworks::Postbacks::Cheetah < AdtekioAdnetworks::BasePostbackCla
     { :url => "http://ws.mobpartner.com/v2/ws.php",
       :params => {
         :campaign_id => "@{params[:partner_data]}@",
-        :mobtag => "@{params[:click]}@",
-        :order_id => "@{params[:mid]}@",
-        :idfa => "@{event.adid}@"
+        :mobtag      => "@{params[:click]}@",
+        :order_id    => "@{params[:mid]}@",
+        :idfa        => "@{event.adid}@"
       },
 
     }
@@ -21,9 +21,9 @@ class AdtekioAdnetworks::Postbacks::Cheetah < AdtekioAdnetworks::BasePostbackCla
     { :url => "http://ws.mobpartner.com/v2/ws.php",
       :params => {
         :campaign_id => "@{params[:partner_data]}@",
-        :mobtag => "@{params[:click]}@",
-        :order_id => "@{params[:mid]}@",
-        :gaid => "@{event.gadid}@"
+        :mobtag      => "@{params[:click]}@",
+        :order_id    => "@{params[:mid]}@",
+        :gaid        => "@{event.gadid}@"
       },
 
     }

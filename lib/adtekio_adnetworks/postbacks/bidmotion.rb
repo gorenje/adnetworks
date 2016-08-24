@@ -9,7 +9,7 @@ class AdtekioAdnetworks::Postbacks::Bidmotion < AdtekioAdnetworks::BasePostbackC
     { :url => "http://engine.mobdone.com/conversion",
       :params => {
         :advnid => "@{netcfg.advnid}@",
-        :tid => "@{params[:click]}@"
+        :tid    => "@{params[:click]}@"
       },
       :store_user => true
     }
@@ -18,9 +18,9 @@ class AdtekioAdnetworks::Postbacks::Bidmotion < AdtekioAdnetworks::BasePostbackC
   define_postback_for :ios, :fun do
     { :url => "http://engine.mobdone.com/ltv",
       :params => {
-        :advnid => "@{netcfg.advnid}@",
-        :tid => "@{user.click_data['click']}@",
-        :event_name => "tutorial",
+        :advnid        => "@{netcfg.advnid}@",
+        :tid           => "@{user.click_data['click']}@",
+        :event_name    => "tutorial",
         :event_iosidfa => "@{event.adid}@"
       },
       :user_required => true,
@@ -31,9 +31,9 @@ class AdtekioAdnetworks::Postbacks::Bidmotion < AdtekioAdnetworks::BasePostbackC
   define_postback_for :ios, :pay do
     { :url => "http://engine.mobdone.com/ltv",
       :params => {
-        :advnid => "@{netcfg.advnid}@",
-        :tid => "@{user.click_data['click']}@",
-        :event_name => "purchase",
+        :advnid        => "@{netcfg.advnid}@",
+        :tid           => "@{user.click_data['click']}@",
+        :event_name    => "purchase",
         :event_revenue => "@{event.revenue}@",
         :event_iosidfa => "@{event.adid}@"
       },
@@ -45,7 +45,7 @@ class AdtekioAdnetworks::Postbacks::Bidmotion < AdtekioAdnetworks::BasePostbackC
     { :url => "http://engine.mobdone.com/conversion",
       :params => {
         :advnid => "@{netcfg.advnid}@",
-        :tid => "@{params[:click]}@"
+        :tid    => "@{params[:click]}@"
       },
       :store_user => true
     }
@@ -54,9 +54,9 @@ class AdtekioAdnetworks::Postbacks::Bidmotion < AdtekioAdnetworks::BasePostbackC
   define_postback_for :android, :fun do
     { :url => "http://engine.mobdone.com/ltv",
       :params => {
-        :advnid => "@{netcfg.advnid}@",
-        :tid => "@{user.click_data['click']}@",
-        :event_name => "tutorial",
+        :advnid          => "@{netcfg.advnid}@",
+        :tid             => "@{user.click_data['click']}@",
+        :event_name      => "tutorial",
         :event_androidid => "@{params[:gadid]}@"
       },
       :user_required => true,
@@ -67,10 +67,10 @@ class AdtekioAdnetworks::Postbacks::Bidmotion < AdtekioAdnetworks::BasePostbackC
   define_postback_for :android, :pay do
     { :url => "http://engine.mobdone.com/ltv",
       :params => {
-        :advnid => "@{netcfg.advnid}@",
-        :tid => "@{user.click_data['click']}@",
-        :event_name => "purchase",
-        :event_revenue => "@{event.revenue}@",
+        :advnid          => "@{netcfg.advnid}@",
+        :tid             => "@{user.click_data['click']}@",
+        :event_name      => "purchase",
+        :event_revenue   => "@{event.revenue}@",
         :event_androidid => "@{params[:gadid]}@"
       },
       :user_required => true

@@ -8,9 +8,9 @@ class AdtekioAdnetworks::Postbacks::Mopub < AdtekioAdnetworks::BasePostbackClass
   define_postback_for :ios, :mac do
     { :url => "http://ads.mopub.com/m/open",
       :params => {
-        :v => "5",
+        :v    => "5",
         :udid => "@{event.adid}@",
-        :id => "@{event.bundleid}@"
+        :id   => "@{event.bundleid}@"
       },
 
     }
@@ -19,9 +19,9 @@ class AdtekioAdnetworks::Postbacks::Mopub < AdtekioAdnetworks::BasePostbackClass
   define_postback_for :android, :mac do
     { :url => "http://ads.mopub.com/m/open",
       :params => {
-        :v => "5",
+        :v    => "5",
         :udid => "@{event.gadid}@",
-        :id => "@{event.bundleid}@"
+        :id   => "@{event.bundleid}@"
       },
 
     }

@@ -10,7 +10,7 @@ class AdtekioAdnetworks::Postbacks::Zemail < AdtekioAdnetworks::BasePostbackClas
       :params => {
         :gmid => "@{netcfg.gmid}@",
         :axid => "@{netcfg.axid}@",
-        :cxt => "s2s",
+        :cxt  => "s2s",
         :uxid => "@{params[:click]}@"
       },
     }

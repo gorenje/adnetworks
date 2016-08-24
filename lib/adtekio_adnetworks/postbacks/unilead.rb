@@ -49,7 +49,7 @@ class AdtekioAdnetworks::Postbacks::Unilead < AdtekioAdnetworks::BasePostbackCla
     { :url => "http://go.unilead.net/GP2bL",
       :params => {
         :transaction_id => "@{user.click_data['click']}@",
-        :amount => "@{event.revenue}@"
+        :amount         => "@{event.revenue}@"
       },
       :user_required => true,
       :check => "event.params[:device].to_s =~/ipad/i"
@@ -60,7 +60,7 @@ class AdtekioAdnetworks::Postbacks::Unilead < AdtekioAdnetworks::BasePostbackCla
     { :url => "http://go.unilead.net/GP2bR",
       :params => {
         :transaction_id => "@{user.click_data['click']}@",
-        :amount => "@{event.revenue}@"
+        :amount         => "@{event.revenue}@"
       },
       :user_required => true,
       :check => "event.params[:device].to_s =~/iphone/i"
@@ -72,7 +72,6 @@ class AdtekioAdnetworks::Postbacks::Unilead < AdtekioAdnetworks::BasePostbackCla
       :params => {
         :transaction_id => "@{params[:click]}@"
       },
-
     }
   end
 

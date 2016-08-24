@@ -19,9 +19,9 @@ class AdtekioAdnetworks::Postbacks::Fractionalmedia < AdtekioAdnetworks::BasePos
     { :url => "http://advertiser.fractionalmedia.com/notify_bin",
       :params => {
         :advertiserid => "@{netcfg.advertiser_id}@",
-        :bidid => "@{user.click_data['click']}@",
-        :timestamp => "@{event.trigger_stamp}@",
-        :eventid => "open"
+        :bidid        => "@{user.click_data['click']}@",
+        :timestamp    => "@{event.trigger_stamp}@",
+        :eventid      => "open"
       },
       :user_required => true
     }
@@ -31,10 +31,10 @@ class AdtekioAdnetworks::Postbacks::Fractionalmedia < AdtekioAdnetworks::BasePos
     { :url => "http://advertiser.fractionalmedia.com/notify_bin",
       :params => {
         :advertiserid => "@{netcfg.advertiser_id}@",
-        :bidid => "@{user.click_data['click']}@",
-        :timestamp => "@{event.trigger_stamp}@",
-        :eventid => "purchase",
-        :eventvalue => "@{event.revenue}@"
+        :bidid        => "@{user.click_data['click']}@",
+        :timestamp    => "@{event.trigger_stamp}@",
+        :eventid      => "purchase",
+        :eventvalue   => "@{event.revenue}@"
       },
       :user_required => true
     }
@@ -54,9 +54,9 @@ class AdtekioAdnetworks::Postbacks::Fractionalmedia < AdtekioAdnetworks::BasePos
     { :url => "http://advertiser.fractionalmedia.com/notify_bin",
       :params => {
         :advertiserid => "@{netcfg.advertiser_id}@",
-        :bidid => "@{user.click_data['click']}@",
-        :timestamp => "@{event.trigger_stamp}@",
-        :eventid => "open"
+        :bidid        => "@{user.click_data['click']}@",
+        :timestamp    => "@{event.trigger_stamp}@",
+        :eventid      => "open"
       },
       :user_required => true
     }
@@ -66,10 +66,10 @@ class AdtekioAdnetworks::Postbacks::Fractionalmedia < AdtekioAdnetworks::BasePos
     { :url => "http://advertiser.fractionalmedia.com/notify_bin",
       :params => {
         :advertiserid => "@{netcfg.advertiser_id}@",
-        :bidid => "@{user.click_data['click']}@",
-        :timestamp => "@{event.trigger_stamp}@",
-        :eventid => "purchase",
-        :eventvalue => "@{event.revenue}@"
+        :bidid        => "@{user.click_data['click']}@",
+        :timestamp    => "@{event.trigger_stamp}@",
+        :eventid      => "purchase",
+        :eventvalue   => "@{event.revenue}@"
       },
       :user_required => true
     }

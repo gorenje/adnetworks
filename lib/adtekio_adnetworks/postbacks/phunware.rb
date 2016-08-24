@@ -8,7 +8,7 @@ class AdtekioAdnetworks::Postbacks::Phunware < AdtekioAdnetworks::BasePostbackCl
   define_postback_for :ios, :mac do
     { :url => "http://tapit.go2cloud.org/aff_lsr",
       :params => {
-        :offer_id => "@{netcfg.offer_id}@",
+        :offer_id       => "@{netcfg.offer_id}@",
         :transaction_id => "@{params[:click]}@"
       },
 

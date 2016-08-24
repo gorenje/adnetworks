@@ -9,7 +9,7 @@ class AdtekioAdnetworks::Postbacks::Todacell < AdtekioAdnetworks::BasePostbackCl
     { :url => "http://conversion.todacell.com/conversion/action",
       :params => {
         :source => "@{netcfg.source}@",
-        :tcid => "@{params[:click]}@"
+        :tcid   => "@{params[:click]}@"
       },
 
     }

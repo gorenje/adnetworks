@@ -28,16 +28,16 @@ module AdtekioAdnetworks
     end
   end
 
-  class CGIEruby < Erubis::PI::Eruby
-    REGEXP = Regexp.new("[^#{URI::PATTERN::UNRESERVED}]").freeze
-
-    def escaped_expr(code)
-      return "URI.encode((#{code.strip}).to_s, CGIEruby::REGEXP)"
-    end
-  end
-
   class BasePostbackClass
     attr_reader :event, :params, :user, :netcfg
+
+    class CGIEruby < Erubis::PI::Eruby
+      REGEXP = Regexp.new("[^#{URI::PATTERN::UNRESERVED}]").freeze
+
+      def escaped_expr(code)
+        return "URI.encode((#{code.strip}).to_s, CGIEruby::REGEXP)"
+      end
+    end
 
     class MD5 < Digest::MD5
       class << self
@@ -56,9 +56,9 @@ module AdtekioAdnetworks
       end
     end
 
-    def initialize(event, user, netcfg)
+    def initialize(event, user, netcfg, params = nil)
       @event  = event
-      @params = event.params
+      @params = params || event.params
       @user   = user
       @netcfg = netcfg
     end
@@ -71,6 +71,18 @@ module AdtekioAdnetworks
       Base64.encode64(MD5.md5(val).digest).tr("+/=", "-_\n").strip
     end
 
+    def contains_eruby?(val)
+      val && (val =~ /@\{.*\}@/ || val =~ /<%.*%>/m)
+    end
+
+    def parse_string(str)
+      if contains_eruby?(str)
+        CGIEruby.new(str).result(binding)
+      else
+        str
+      end
+    end
+
     def should_handle?(cfg)
       cfg.check.nil? || (if cfg.check.is_a?(Symbol)
                            send(cfg.check)
@@ -79,59 +91,38 @@ module AdtekioAdnetworks
                          end)
     end
 
+    def either_hash_or_symbol_to_string(val)
+      if val.is_a?(Hash)
+        uri = Addressable::URI.new
+        uri.query_values = val
+        CGI.unescape(uri.to_s).gsub(/^[?]/,'')
+      elsif val.is_a?(Symbol)
+        send(val)
+      else
+        nil
+      end
+    end
+
     def cfg_to_url(cfg)
       return unless should_handle?(cfg)
 
-      @header = if cfg.header.is_a?(Hash)
-                  uri = Addressable::URI.new
-                  uri.query_values = cfg.header
-                  CGI.unescape(uri.to_s).gsub(/^[?]/,'')
-                elsif cfg.header.is_a?(Symbol)
-                  send(cfg.header)
-                else
-                  nil
-                end
+      header = either_hash_or_symbol_to_string(cfg.header)
+      body   = either_hash_or_symbol_to_string(cfg.post)
 
-      @body = if cfg.post.is_a?(Hash)
-                uri = Addressable::URI.new
-                uri.query_values = cfg.post
-                CGI.unescape(uri.to_s)
-              elsif cfg.post.is_a?(Symbol)
-                send(cfg.post)
-              else
-                nil
-              end
-
-      urlparams = if cfg.params.is_a?(Hash)
-                    cfg.params
-                  elsif cfg.params.is_a?(Symbol)
-                    send(cfg.params)
-                  end
+      urlparams = ( (cfg.params.is_a?(Hash) && cfg.params) ||
+                    cfg.params.is_a?(Symbol) && send(cfg.params) )
 
       uri = Addressable::URI.parse(cfg.url)
-      uri.query_values = urlparams
-      @url = CGI.unescape(uri.to_s)
+      uri.query_values = urlparams unless urlparams.empty?
+      url = CGI.unescape(uri.to_s)
 
-      parsed_url = if @url =~ /@{.*}@/ || @url =~ /<%.*%>/m
-                     CGIEruby.new(@url).result(binding)
-                   else
-                     @url
-                   end
+      parsed_header = CGI::parse(parse_string(header) || "")
+      parsed_header.each { |key, value| parsed_header[key] = value.first }
 
-      parsed_body = if @body && (@body =~ /@{.*}@/ || @body =~ /<%.*%>/m)
-                      CGIEruby.new(@body).result(binding)
-                    else
-                      @body
-                    end
-
-      parsed_header = if @header && (@header =~ /@{.*}@/ || @header =~ /<%.*%>/m)
-                        CGI::parse(CGIEruby.new(@header).result(binding))
-                      else
-                        CGI::parse(@header || "")
-                      end
-      parsed_header.each {|key, value| parsed_header[key] = value.first }
-
-      { :url => parsed_url, :body => parsed_body, :header => parsed_header }
+      { :url    => parse_string(url),
+        :body   => parse_string(body),
+        :header => parsed_header
+      }
     end
   end
 

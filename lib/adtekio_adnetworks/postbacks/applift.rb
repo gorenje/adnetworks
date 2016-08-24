@@ -18,13 +18,13 @@ class AdtekioAdnetworks::Postbacks::Applift < AdtekioAdnetworks::BasePostbackCla
   define_postback_for :ios, :fun do
     { :url => "http://events.applift.com/v1/events",
       :params => {
-        :source => "@{netcfg.source}@",
+        :source           => "@{netcfg.source}@",
         :pub_reference_id => "@{user.click_data['partner_data']}@",
-        :event_name => "tutorial_complete",
-        :ios_ifa => "@{event.adid}@",
-        :device_brand => "apple",
-        :device_model => "@{params[:device]}@",
-        :device_ip => "@{event.ip}@"
+        :event_name       => "tutorial_complete",
+        :ios_ifa          => "@{event.adid}@",
+        :device_brand     => "apple",
+        :device_model     => "@{params[:device]}@",
+        :device_ip        => "@{event.ip}@"
       },
       :user_required => true,
       :check => "event.params[:funnel_step] == 'level_won'"
@@ -34,13 +34,13 @@ class AdtekioAdnetworks::Postbacks::Applift < AdtekioAdnetworks::BasePostbackCla
   define_postback_for :ios, :pay do
     { :url => "http://events.applift.com/v1/events",
       :params => {
-        :source => "@{netcfg.source}@",
+        :source           => "@{netcfg.source}@",
         :pub_reference_id => "@{user.click_data['partner_data']}@",
-        :ios_ifa => "@{event.adid}@",
-        :device_brand => "apple",
-        :device_model => "@{params[:device]}@",
-        :device_ip => "@{event.ip}@",
-        :event_value => "@{event.revenue}@"
+        :ios_ifa          => "@{event.adid}@",
+        :device_brand     => "apple",
+        :device_model     => "@{params[:device]}@",
+        :device_ip        => "@{event.ip}@",
+        :event_value      => "@{event.revenue}@"
       },
       :user_required => true
     }
@@ -59,12 +59,12 @@ class AdtekioAdnetworks::Postbacks::Applift < AdtekioAdnetworks::BasePostbackCla
   define_postback_for :android, :fun do
     { :url => "http://events.applift.com/v1/events",
       :params => {
-        :source => "@{netcfg.source}@",
+        :source           => "@{netcfg.source}@",
         :pub_reference_id => "@{user.click_data['partner_data']}@",
-        :event_name => "tutorial_complete",
-        :device_id => "@{event.gadid}@",
-        :device_model => "@{params[:device]}@",
-        :device_ip => "@{event.ip}@"
+        :event_name       => "tutorial_complete",
+        :device_id        => "@{event.gadid}@",
+        :device_model     => "@{params[:device]}@",
+        :device_ip        => "@{event.ip}@"
       },
       :user_required => true,
       :check => "event.params[:funnel_step] == 'level_won'"
@@ -74,12 +74,12 @@ class AdtekioAdnetworks::Postbacks::Applift < AdtekioAdnetworks::BasePostbackCla
   define_postback_for :android, :pay do
     { :url => "http://events.applift.com/v1/events",
       :params => {
-        :source => "@{netcfg.source}@",
+        :source           => "@{netcfg.source}@",
         :pub_reference_id => "@{user.click_data['partner_data']}@",
-        :device_id => "@{event.gadid}@",
-        :device_model => "@{params[:device]}@",
-        :device_ip => "@{event.ip}@",
-        :event_value => "@{event.revenue}@"
+        :device_id        => "@{event.gadid}@",
+        :device_model     => "@{params[:device]}@",
+        :device_ip        => "@{event.ip}@",
+        :event_value      => "@{event.revenue}@"
       },
       :user_required => true
     }

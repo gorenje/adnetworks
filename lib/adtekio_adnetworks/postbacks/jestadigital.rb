@@ -9,7 +9,7 @@ class AdtekioAdnetworks::Postbacks::Jestadigital < AdtekioAdnetworks::BasePostba
     { :url => "http://t.yieldr.net/install/",
       :params => {
         :transactionid => "@{params[:mid]}@",
-        :ydrid => "@{params[:click]}@"
+        :ydrid         => "@{params[:click]}@"
       },
 
     }

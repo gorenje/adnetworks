@@ -8,7 +8,7 @@ class AdtekioAdnetworks::Postbacks::Propeller < AdtekioAdnetworks::BasePostbackC
   define_postback_for :ios, :mac do
     { :url => "http://ad.propellerads.com/conversion.php",
       :params => {
-        :aid => "@{netcfg.aid}@",
+        :aid        => "@{netcfg.aid}@",
         :visitor_id => "@{params[:click]}@"
       },
 

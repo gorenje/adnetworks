@@ -9,8 +9,8 @@ class AdtekioAdnetworks::Postbacks::Mobpartner < AdtekioAdnetworks::BasePostback
     { :url => "http://ws.mobpartner.com/v2/ws.php",
       :params => {
         :campaign_id => "@{netcfg.campaign_id}@",
-        :mobtag => "@{params[:click]}@",
-        :order_id => "@{params[:mid]}@"
+        :mobtag      => "@{params[:click]}@",
+        :order_id    => "@{params[:mid]}@"
       },
 
     }

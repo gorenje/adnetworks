@@ -8,8 +8,8 @@ class AdtekioAdnetworks::Postbacks::Heyzap < AdtekioAdnetworks::BasePostbackClas
   define_postback_for :ios, :mac do
     { :url => "http://www.heyzap.com/cpi_callback/new_install",
       :params => {
-        :game_identifier => "@{netcfg.game_id}@",
-        :secret_key => "@{netcfg.secret_key}@",
+        :game_identifier       => "@{netcfg.game_id}@",
+        :secret_key            => "@{netcfg.secret_key}@",
         :impression_identifier => "@{params[:click]}@"
       },
       :store_user => true
@@ -20,7 +20,7 @@ class AdtekioAdnetworks::Postbacks::Heyzap < AdtekioAdnetworks::BasePostbackClas
     { :url => "http://www.heyzap.com/in_game_api/ads/register_event",
       :params => {
         :impression_id => "@{user.click_data['click']}@",
-        :event_type => "app_open"
+        :event_type    => "app_open"
       },
       :user_required => true
     }
@@ -30,7 +30,7 @@ class AdtekioAdnetworks::Postbacks::Heyzap < AdtekioAdnetworks::BasePostbackClas
     { :url => "http://www.heyzap.com/in_game_api/ads/register_event",
       :params => {
         :impression_id => "@{user.click_data['click']}@",
-        :event_type => "tutorial"
+        :event_type    => "tutorial"
       },
       :user_required => true,
       :check => "event.params[:funnel_step] == 'step_one'"
@@ -41,8 +41,8 @@ class AdtekioAdnetworks::Postbacks::Heyzap < AdtekioAdnetworks::BasePostbackClas
     { :url => "http://www.heyzap.com/in_game_api/ads/register_event",
       :params => {
         :impression_id => "@{user.click_data['click']}@",
-        :event_type => "purchase",
-        :revenue_usd => "@{event.revenue}@"
+        :event_type    => "purchase",
+        :revenue_usd   => "@{event.revenue}@"
       },
       :user_required => true
     }

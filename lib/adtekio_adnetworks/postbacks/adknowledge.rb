@@ -8,7 +8,7 @@ class AdtekioAdnetworks::Postbacks::Adknowledge < AdtekioAdnetworks::BasePostbac
   define_postback_for :ios, :mac do
     { :url => "http://tracking.adk-mobile.com/mobile/postback/",
       :params => {
-        :at => "@{netcfg.at}@",
+        :at         => "@{netcfg.at}@",
         :postbackid => "@{params[:click]}@"
       },
 

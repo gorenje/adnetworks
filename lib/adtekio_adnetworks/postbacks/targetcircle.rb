@@ -9,8 +9,8 @@ class AdtekioAdnetworks::Postbacks::Targetcircle < AdtekioAdnetworks::BasePostba
     { :url => "http://p.trackmytarget.com/",
       :params => {
         :conversionType => "install",
-        :transactionID => "@{params[:click]}@",
-        :tmtData => "@{params[:click]}@"
+        :transactionID  => "@{params[:click]}@",
+        :tmtData        => "@{params[:click]}@"
       },
       :store_user => true
     }
@@ -20,8 +20,8 @@ class AdtekioAdnetworks::Postbacks::Targetcircle < AdtekioAdnetworks::BasePostba
     { :url => "http://p.trackmytarget.com/",
       :params => {
         :conversionType => "lead",
-        :transactionID => "@{user.click_data['click']}@",
-        :tmtData => "@{user.click_data['click']}@"
+        :transactionID  => "@{user.click_data['click']}@",
+        :tmtData        => "@{user.click_data['click']}@"
       },
       :user_required => true
     }
@@ -31,8 +31,8 @@ class AdtekioAdnetworks::Postbacks::Targetcircle < AdtekioAdnetworks::BasePostba
     { :url => "http://p.trackmytarget.com/",
       :params => {
         :conversionType => "sale",
-        :transactionID => "@{user.click_data['click']}@",
-        :tmtData => "@{user.click_data['click']}@"
+        :transactionID  => "@{user.click_data['click']}@",
+        :tmtData        => "@{user.click_data['click']}@"
       },
       :user_required => true
     }

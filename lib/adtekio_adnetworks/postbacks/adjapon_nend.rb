@@ -30,7 +30,7 @@ class AdtekioAdnetworks::Postbacks::AdjaponNend < AdtekioAdnetworks::BasePostbac
       :params => {
         :nendcv => "3",
         :nendid => "@{user.click_data['click']}@",
-        :price => "@{event.revenue}@"
+        :price  => "@{event.revenue}@"
       },
       :user_required => true
     }

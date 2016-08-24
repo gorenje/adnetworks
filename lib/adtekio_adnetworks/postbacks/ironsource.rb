@@ -9,8 +9,8 @@ class AdtekioAdnetworks::Postbacks::Ironsource < AdtekioAdnetworks::BasePostback
     { :url => "http://tracking.mobilecore.com/stats/mobileloopback",
       :params => {
         :action => "I",
-        :adid => "@{params[:click]}@",
-        :subid => "@{params[:adgroup]}@"
+        :adid   => "@{params[:click]}@",
+        :subid  => "@{params[:adgroup]}@"
       },
 
     }

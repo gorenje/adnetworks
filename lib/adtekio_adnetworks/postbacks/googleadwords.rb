@@ -8,12 +8,11 @@ class AdtekioAdnetworks::Postbacks::Googleadwords < AdtekioAdnetworks::BasePostb
   define_postback_for :all, :mac do
     { :url => "https://www.googleadservices.com/pagead/conversion/@{netcfg.app_id}@/",
       :params => {
-        :label => "@{netcfg.label}@",
-        :muid => "@{muidify(event.adid)}@",
+        :label    => "@{netcfg.label}@",
+        :muid     => "@{muidify(event.adid)}@",
         :bundleid => "@{event.bundleid}@",
-        :idtype => "@{event.adid}@"
+        :idtype   => "@{event.adid}@"
       },
-
     }
   end
 

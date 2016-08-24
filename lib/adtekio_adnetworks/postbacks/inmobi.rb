@@ -9,16 +9,15 @@ class AdtekioAdnetworks::Postbacks::Inmobi < AdtekioAdnetworks::BasePostbackClas
     { :url => "http://ma.inmobi.com/downloads/trackerV1/@{netcfg.company}@",
       :params => {
         :android_id => "@{params[:android_id]}@",
-        :impid => "@{params[:click]}@"
+        :impid      => "@{params[:click]}@"
       },
-
     }
   end
 
   define_postback_for :ios, :mac do
     { :url => "http://ma.inmobi.com/downloads/trackerV1/@{netcfg.company}@",
       :params => {
-        :idfa => "@{event.adid}@",
+        :idfa  => "@{event.adid}@",
         :impid => "@{params[:click]}@"
       },
       :store_user => true
@@ -28,9 +27,9 @@ class AdtekioAdnetworks::Postbacks::Inmobi < AdtekioAdnetworks::BasePostbackClas
   define_postback_for :ios, :apo do
     { :url => "http://ma.inmobi.com/downloads/trackerV1/@{netcfg.company}@",
       :params => {
-        :idfa => "@{event.adid}@",
+        :idfa  => "@{event.adid}@",
         :impid => "@{user.click_data['click']}@",
-        :goal => "login"
+        :goal  => "login"
       },
       :user_required => true
     }
@@ -39,9 +38,9 @@ class AdtekioAdnetworks::Postbacks::Inmobi < AdtekioAdnetworks::BasePostbackClas
   define_postback_for :ios, :pay do
     { :url => "http://ma.inmobi.com/downloads/trackerV1/@{netcfg.company}@",
       :params => {
-        :idfa => "@{event.adid}@",
-        :impid => "@{user.click_data['click']}@",
-        :goal => "payment",
+        :idfa           => "@{event.adid}@",
+        :impid          => "@{user.click_data['click']}@",
+        :goal           => "payment",
         :purchase_value => "@{event.revenue}@"
       },
       :user_required => true

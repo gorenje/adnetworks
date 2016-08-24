@@ -9,8 +9,8 @@ class AdtekioAdnetworks::Postbacks::Uppsmobi < AdtekioAdnetworks::BasePostbackCl
     { :url => "http://pixel.traffiliate.com/pixel/serverPixels.php",
       :params => {
         :androidid => "@{params[:android_id]}@",
-        :context => "@{params[:click]}@",
-        :master => "@{netcfg.master}@"
+        :context   => "@{params[:click]}@",
+        :master    => "@{netcfg.master}@"
       },
 
     }

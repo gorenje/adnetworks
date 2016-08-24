@@ -8,12 +8,12 @@ class AdtekioAdnetworks::Postbacks::Fyber < AdtekioAdnetworks::BasePostbackClass
   define_postback_for :ios, :mac do
     { :url => "http://service.sponsorpay.com/installs/v2",
       :params => {
-        :answer_received => "0",
-        :appid => "@{netcfg.appid}@",
-        :apple_idfa => "@{event.adid}@",
+        :answer_received             => "0",
+        :appid                       => "@{netcfg.appid}@",
+        :apple_idfa                  => "@{event.adid}@",
         :apple_idfa_tracking_enabled => "true",
-        :ip => "@{event.ip}@",
-        :subid => "@{params[:click]}@"
+        :ip                          => "@{event.ip}@",
+        :subid                       => "@{params[:click]}@"
       },
 
     }
@@ -22,12 +22,12 @@ class AdtekioAdnetworks::Postbacks::Fyber < AdtekioAdnetworks::BasePostbackClass
   define_postback_for :android, :mac do
     { :url => "http://service.sponsorpay.com/installs/v2",
       :params => {
-        :answer_received => "0",
-        :appid => "@{netcfg.appid}@",
-        :google_ad_id => "@{event.gadid}@",
+        :answer_received               => "0",
+        :appid                         => "@{netcfg.appid}@",
+        :google_ad_id                  => "@{event.gadid}@",
         :google_ad_id_tracking_enabled => "true",
-        :ip => "@{event.ip}@",
-        :subid => "@{params[:click]}@"
+        :ip                            => "@{event.ip}@",
+        :subid                         => "@{params[:click]}@"
       },
 
     }

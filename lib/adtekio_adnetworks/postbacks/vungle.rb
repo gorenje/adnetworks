@@ -8,10 +8,10 @@ class AdtekioAdnetworks::Postbacks::Vungle < AdtekioAdnetworks::BasePostbackClas
   define_postback_for :android, :mac do
     { :url => "http://api.vungle.com/api/v3/new",
       :params => {
-        :app_id => "@{netcfg.app_id}@",
-        :isu => "@{params[:android_id]}@",
-        :aaid => "@{params[:gadid]}@",
-        :event_id => "@{params[:click]}@",
+        :app_id     => "@{netcfg.app_id}@",
+        :isu        => "@{params[:android_id]}@",
+        :aaid       => "@{params[:gadid]}@",
+        :event_id   => "@{params[:click]}@",
         :conversion => "1"
       },
 
@@ -21,9 +21,9 @@ class AdtekioAdnetworks::Postbacks::Vungle < AdtekioAdnetworks::BasePostbackClas
   define_postback_for :ios, :mac do
     { :url => "http://api.vungle.com/api/v3/new",
       :params => {
-        :app_id => "@{netcfg.app_id}@",
-        :ifa => "@{event.adid}@",
-        :event_id => "@{params[:click]}@",
+        :app_id     => "@{netcfg.app_id}@",
+        :ifa        => "@{event.adid}@",
+        :event_id   => "@{params[:click]}@",
         :conversion => "1"
       },
 

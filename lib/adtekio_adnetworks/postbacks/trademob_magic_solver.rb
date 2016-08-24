@@ -12,11 +12,10 @@ class AdtekioAdnetworks::Postbacks::TrademobMagicSolver < AdtekioAdnetworks::Bas
       },
       :post => {
         :partner_id => "@{netcfg.partner_id}@",
-        :udid => "@{event.uuid}@",
-        :lang => "",
-        :locale => "@{params[:locale]}@"
+        :udid       => "@{event.uuid}@",
+        :lang       => "",
+        :locale     => "@{params[:locale]}@"
       },
-
     }
   end
 

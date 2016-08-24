@@ -8,9 +8,7 @@ class AdtekioAdnetworks::Postbacks::Adstract < AdtekioAdnetworks::BasePostbackCl
   define_postback_for :all, :mac do
     { :url => "http://t.adk2.com/conversion/@{params[:click]}@",
       :params => {
-
       },
-
     }
   end
 
