@@ -18,4 +18,26 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'adtekio_adnetworks'
 
 class Minitest::Test
+  def dump_exception(e)
+    puts "-"*20
+    puts e.message
+    puts "-"*20
+    puts e.backtrace
+    puts "-"*20
+  end
+
+  def for_all_events(&block)
+    AdtekioAdnetworks::Postbacks.networks.map do |network,klz|
+      klz.postbacks.map do |platform,events|
+        events.map do |event|
+          begin
+            yield(network, klz, platform, event)
+          rescue Exception => e
+            dump_exception(e)
+            assert(false, "Failed for #{network} / #{platform} / #{event}")
+          end
+        end
+      end
+    end
+  end
 end

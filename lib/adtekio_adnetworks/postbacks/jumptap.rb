@@ -17,8 +17,7 @@ class AdtekioAdnetworks::Postbacks::Jumptap < AdtekioAdnetworks::BasePostbackCla
     elsif event.uuid
       { :hid => event.uuid }
     else
-      { :hid_sha1 => Digest::SHA1.hexdigest(params[:mid]) }
-    end.merge( {:app => event.bundleid,
-                 :event => "download" })
+      { :hid_sha1 => sha1(params[:mid]) }
+    end.merge( {:app => event.bundleid, :event => "download" })
   end
 end

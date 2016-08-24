@@ -30,7 +30,7 @@ class AdtekioAdnetworks::Postbacks::SevenGames < AdtekioAdnetworks::BasePostback
   define_postback_for :android, :mac do
     { :url => "http://tracking.sevengamesnetwork.com/aff_lsr",
       :params => {
-        :adv_sub        => "@{event.device_id]}@",
+        :adv_sub        => "@{event.device_id}@",
         :transaction_id => "@{params[:click]}@"
       },
       :store_user => true

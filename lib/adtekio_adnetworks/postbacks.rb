@@ -1,6 +1,7 @@
 require 'uuidtools'
 require 'json'
 require 'digest/sha2'
+require 'digest/md5'
 require 'erubis'
 
 module AdtekioAdnetworks
@@ -38,6 +39,23 @@ module AdtekioAdnetworks
   class BasePostbackClass
     attr_reader :event, :params, :user, :netcfg
 
+    class MD5 < Digest::MD5
+      class << self
+        alias orig_new new
+        def new(str = nil)
+          if str
+            orig_new.update(str)
+          else
+            orig_new
+          end
+        end
+
+        def md5(*args)
+          new(*args)
+        end
+      end
+    end
+
     def initialize(event, user, netcfg)
       @event  = event
       @params = event.params
@@ -45,8 +63,20 @@ module AdtekioAdnetworks
       @netcfg = netcfg
     end
 
+    def sha1(value)
+      Digest::SHA1.hexdigest(value || "")
+    end
+
+    def muidify(val)
+      Base64.encode64(MD5.md5(val).digest).tr("+/=", "-_\n").strip
+    end
+
     def should_handle?(cfg)
-      cfg.check.nil? || (cfg.check && eval(cfg.check))
+      cfg.check.nil? || (if cfg.check.is_a?(Symbol)
+                           send(cfg.check)
+                         else
+                           eval(cfg.check)
+                         end)
     end
 
     def cfg_to_url(cfg)

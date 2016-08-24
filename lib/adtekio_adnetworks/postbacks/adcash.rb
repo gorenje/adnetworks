@@ -12,9 +12,8 @@ class AdtekioAdnetworks::Postbacks::Adcash < AdtekioAdnetworks::BasePostbackClas
         :cid      => "@{params[:click]}@",
         :idform   => "@{netcfg.idform}@",
         :key      => "@{netcfg.key}@",
-        :variable => "@{Digest::SHA1.hexdigest(params[:mid])}@"
+        :variable => "@{sha1(params[:mid])}@"
       },
     }
   end
-
 end

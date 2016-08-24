@@ -8,9 +8,9 @@ class AdtekioAdnetworks::Postbacks::Matomy < AdtekioAdnetworks::BasePostbackClas
   define_postback_for :android, :mac do
     { :url => "http://network.adsmarket.com/cevent",
       :params => {
-        :p1 => "@{Digest::SHA1.hexdigest(params[:mid])}@",
-        :programid => "@{params[:partner_data]}@",
-        :type => "lead",
+        :type        => "lead",
+        :p1          => "@{sha1(params[:mid])}@",
+        :programid   => "@{params[:partner_data]}@",
         :visitor_cid => "@{params[:click]}@"
       },
 
@@ -20,9 +20,9 @@ class AdtekioAdnetworks::Postbacks::Matomy < AdtekioAdnetworks::BasePostbackClas
   define_postback_for :ios, :mac do
     { :url => "http://network.adsmarket.com/cevent",
       :params => {
-        :p1 => "@{Digest::SHA1.hexdigest(params[:mid])}@",
-        :programid => "@{params[:partner_data]}@",
-        :type => "lead",
+        :type        => "lead",
+        :p1          => "@{sha1(params[:mid])}@",
+        :programid   => "@{params[:partner_data]}@",
         :visitor_cid => "@{params[:click]}@"
       },
       :store_user => true
@@ -32,11 +32,11 @@ class AdtekioAdnetworks::Postbacks::Matomy < AdtekioAdnetworks::BasePostbackClas
   define_postback_for :ios, :fun do
     { :url => "http://network.adsmarket.com/cevent",
       :params => {
-        :p1 => "@{Digest::SHA1.hexdigest(params[:mid])}@",
-        :programid => "@{user.click_data['partner_data']}@",
-        :type => "lead",
+        :type        => "lead",
+        :externalid  => "funnel",
+        :p1          => "@{sha1(params[:mid])}@",
+        :programid   => "@{user.click_data['partner_data']}@",
         :visitor_cid => "@{user.click_data['click']}@",
-        :externalid => "funnel"
       },
       :user_required => true,
       :check => "event.params[:funnel_step] == 'start_tutorial'"
@@ -46,11 +46,11 @@ class AdtekioAdnetworks::Postbacks::Matomy < AdtekioAdnetworks::BasePostbackClas
   define_postback_for :ios, :pay do
     { :url => "http://network.adsmarket.com/cevent",
       :params => {
-        :p1 => "@{Digest::SHA1.hexdigest(params[:mid])}@",
-        :programid => "@{user.click_data['partner_data']}@",
-        :type => "lead",
+        :type        => "lead",
+        :externalid  => "sale",
+        :p1          => "@{sha1(params[:mid])}@",
+        :programid   => "@{user.click_data['partner_data']}@",
         :visitor_cid => "@{user.click_data['click']}@",
-        :externalid => "sale"
       },
       :user_required => true
     }

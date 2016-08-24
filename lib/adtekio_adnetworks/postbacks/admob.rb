@@ -9,11 +9,9 @@ class AdtekioAdnetworks::Postbacks::Admob < AdtekioAdnetworks::BasePostbackClass
     { :url => "https://www.googleadservices.com/pagead/conversion/@{netcfg.path}@/",
       :params => {
         :bundleid => "@{event.bundleid}@",
-        :label => "@{netcfg.label}@",
-        :muid => "@{muidify(event.adid)}@"
+        :label    => "@{netcfg.label}@",
+        :muid     => "@{muidify(event.adid)}@"
       },
-
     }
   end
-
 end

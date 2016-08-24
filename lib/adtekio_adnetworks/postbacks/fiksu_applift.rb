@@ -25,6 +25,7 @@ class AdtekioAdnetworks::Postbacks::FiksuApplift < AdtekioAdnetworks::BasePostba
   end
 
   def client_id
-    UUIDTools::UUID.parse_hexdigest(event.params[:mid] || event.adid).to_s
+    UUIDTools::UUID.
+      parse_hexdigest(event.params[:mid] || event.adid || "").to_s
   end
 end
