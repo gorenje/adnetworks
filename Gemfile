@@ -12,6 +12,8 @@ gem 'curb'
 gem 'uuidtools'
 gem 'erubis'
 
+gem 'activesupport'
+
 group :development do
   gem 'jeweler'
   gem 'rake'

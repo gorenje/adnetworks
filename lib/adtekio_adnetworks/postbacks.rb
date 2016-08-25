@@ -3,6 +3,8 @@ require 'json'
 require 'digest/sha2'
 require 'digest/md5'
 require 'erubis'
+require 'active_support'
+require 'active_support/core_ext'
 
 module AdtekioAdnetworks
   module Postbacks
