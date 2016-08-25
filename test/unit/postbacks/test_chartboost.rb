@@ -17,6 +17,14 @@ module Postbacks
       end
     end
 
+    context "helper methods - signature" do
+      should "work with empty input" do
+        obj = instance_with_event(ChartboostEvent.new)
+        assert_equal("", obj.signature)
+
+      end
+    end
+
     context "helper methods - install_body" do
       should "have working android? true" do
         obj = instance_with_event(ChartboostEvent.new(:is_android => true))
