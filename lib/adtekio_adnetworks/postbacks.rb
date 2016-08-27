@@ -115,8 +115,7 @@ module AdtekioAdnetworks
 
       { :url    => parse_string(url),
         :body   => parse_string(body),
-        :header => parsed_header
-      }
+        :header => parsed_header}
     end
   end
 
@@ -163,10 +162,10 @@ module AdtekioAdnetworks
         def self.cfg_to_url(cfg)
           if cfg.params.is_a?(Hash)
             uri = Addressable::URI.parse(cfg.url)
-            uri.query_values = cfg.params
+            uri.query_values = cfg.params unless cfg.params.empty?
             CGI.unescape(uri.to_s)
           else
-            "%s?%s" % [cfg.url, cfg.params]
+            "%s?%s" % [cfg.url, cfg.params.to_s]
           end
         end
 
