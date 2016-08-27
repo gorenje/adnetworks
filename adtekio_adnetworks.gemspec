@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib"]
   s.authors = ["Gerrit Riessen"]
-  s.date = "2016-08-24"
+  s.date = "2016-08-27"
   s.description = "Encapsulate adnetworks and their importers."
   s.email = "gerrit@eccrine.io"
   s.extra_rdoc_files = [
@@ -204,7 +204,10 @@ Gem::Specification.new do |s|
     "lib/adtekio_adnetworks/postbacks/youappi.rb",
     "lib/adtekio_adnetworks/postbacks/zemail.rb",
     "test/helper.rb",
-    "test/unit/test_basics.rb"
+    "test/unit/postbacks/test_chartboost.rb",
+    "test/unit/test_base_postback_class.rb",
+    "test/unit/test_postbacks.rb",
+    "test/unit/test_postbacks_definition.rb"
   ]
   s.homepage = "https://github.com/adtekio/adnetworks.git"
   s.licenses = ["MIT"]
@@ -225,6 +228,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<curb>, [">= 0"])
       s.add_runtime_dependency(%q<uuidtools>, [">= 0"])
       s.add_runtime_dependency(%q<erubis>, [">= 0"])
+      s.add_runtime_dependency(%q<activesupport>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<rake>, [">= 0"])
       s.add_development_dependency(%q<pry>, [">= 0"])
@@ -242,6 +246,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<curb>, [">= 0"])
       s.add_dependency(%q<uuidtools>, [">= 0"])
       s.add_dependency(%q<erubis>, [">= 0"])
+      s.add_dependency(%q<activesupport>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<rake>, [">= 0"])
       s.add_dependency(%q<pry>, [">= 0"])
@@ -260,6 +265,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<curb>, [">= 0"])
     s.add_dependency(%q<uuidtools>, [">= 0"])
     s.add_dependency(%q<erubis>, [">= 0"])
+    s.add_dependency(%q<activesupport>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<rake>, [">= 0"])
     s.add_dependency(%q<pry>, [">= 0"])
