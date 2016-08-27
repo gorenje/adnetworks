@@ -45,11 +45,7 @@ module AdtekioAdnetworks
       class << self
         alias orig_new new
         def new(str = nil)
-          if str
-            orig_new.update(str)
-          else
-            orig_new
-          end
+          str ? orig_new.update(str) : orig_new
         end
 
         def md5(*args)
@@ -78,11 +74,7 @@ module AdtekioAdnetworks
     end
 
     def parse_string(str)
-      if contains_eruby?(str)
-        CGIEruby.new(str).result(binding)
-      else
-        str
-      end
+      contains_eruby?(str) ? CGIEruby.new(str).result(binding) : str
     end
 
     def should_handle?(cfg)

@@ -108,8 +108,8 @@ class AdtekioAdnetworks::Postbacks::Chartboost < AdtekioAdnetworks::BasePostback
       :timestamp      => event.trigger_stamp,
       :iap            => {
         :currency   => event.currency,
-        :price      => event.params[:price].to_f,
-        :product_id => event.params[:st1] || event.params[:s1] || 'unknown'
+        :price      => params[:price].to_f,
+        :product_id => params[:st1] || params[:s1] || 'unknown'
       }
     })
   end
