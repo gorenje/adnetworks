@@ -56,7 +56,7 @@ module AdtekioAdnetworks
 
     def initialize(event, user, netcfg, params = nil)
       @event  = event
-      @params = params || event.params
+      @params = params || (event && event.params)
       @user   = user
       @netcfg = netcfg
     end
@@ -70,7 +70,7 @@ module AdtekioAdnetworks
     end
 
     def contains_eruby?(val)
-      val && (val =~ /@\{.*\}@/ || val =~ /<%.*%>/m)
+      val && !!(val =~ /@\{.*\}@/ || val =~ /<%.*%>/m)
     end
 
     def parse_string(str)
@@ -78,11 +78,8 @@ module AdtekioAdnetworks
     end
 
     def should_handle?(cfg)
-      cfg.check.nil? || (if cfg.check.is_a?(Symbol)
-                           send(cfg.check)
-                         else
-                           eval(cfg.check)
-                         end)
+      cfg.check.nil? ||
+        !!(cfg.check.is_a?(Symbol) ? send(cfg.check) : eval(cfg.check))
     end
 
     def either_hash_or_symbol_to_string(val)
@@ -93,7 +90,7 @@ module AdtekioAdnetworks
       elsif val.is_a?(Symbol)
         send(val)
       else
-        nil
+        val.to_s
       end
     end
 
@@ -104,7 +101,7 @@ module AdtekioAdnetworks
       body   = either_hash_or_symbol_to_string(cfg.post)
 
       urlparams = ( (cfg.params.is_a?(Hash) && cfg.params) ||
-                    cfg.params.is_a?(Symbol) && send(cfg.params) )
+                    cfg.params.is_a?(Symbol) && send(cfg.params) ) || {}
 
       uri = Addressable::URI.parse(cfg.url)
       uri.query_values = urlparams unless urlparams.empty?
@@ -154,19 +151,31 @@ module AdtekioAdnetworks
 
           self.class.send(:define_method, type, Proc.new do |platform|
                             @pbcfg[platform.to_sym][type.to_sym].map do |cfg|
-                              cfg_to_url(cfg)
+                              cfg_to_description(cfg)
                             end
                           end)
         end
 
-        def self.cfg_to_url(cfg)
-          if cfg.params.is_a?(Hash)
+        def self.cfg_to_description(cfg)
+          url = if cfg.params.is_a?(Hash)
             uri = Addressable::URI.parse(cfg.url)
             uri.query_values = cfg.params unless cfg.params.empty?
             CGI.unescape(uri.to_s)
           else
             "%s?%s" % [cfg.url, cfg.params.to_s]
           end
+
+          { :url           => url,
+            :user_required => cfg.user_required || false,
+            :store_user    => cfg.store_user || false }
+        end
+
+        def self.user_required?(event, platform)
+          self.send(event, platform).any? { |desc| desc[:user_required] }
+        end
+
+        def self.store_user?(event, platform)
+          self.send(event, platform).any? { |desc| desc[:store_user] }
         end
 
         def self.network
