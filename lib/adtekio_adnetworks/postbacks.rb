@@ -37,7 +37,7 @@ module AdtekioAdnetworks
       REGEXP = Regexp.new("[^#{URI::PATTERN::UNRESERVED}]").freeze
 
       def escaped_expr(code)
-        return "URI.encode((#{code.strip}).to_s, CGIEruby::REGEXP)"
+        "URI.encode((#{code.strip}).to_s, CGIEruby::REGEXP)"
       end
     end
 

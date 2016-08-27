@@ -40,6 +40,10 @@ class TestBasePostbackClass < Minitest::Test
         end
       end
       assert_equal true, @obj.should_handle?(cfg)
+      cfg = OpenStruct.new :check => 'self.return_true'
+      assert_equal true, @obj.should_handle?(cfg)
+      cfg = OpenStruct.new :check => 'return_true'
+      assert_equal true, @obj.should_handle?(cfg)
     end
 
     should "have a contains_eruby method" do
