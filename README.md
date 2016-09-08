@@ -14,18 +14,17 @@ and common manner.
 Importers
 ---
 
-- [Spends importers](/lib/adtekio_adnetworks/importers/cost) which retrieve
-  spending reports from various networks.
-- [Revenue importers](/lib/adtekio_adnetworks/importers/revenue) which
-  retrieve revenue reports from various adnetworks.
+- [Spends importers][simp] which retrieve spending reports from
+  various networks.
+- [Revenue importers][rimp] which retrieve revenue reports from various
+  adnetworks.
 
 API Key Scrapers
 ---
 
-[API Key Scrapers](/lib/adtekio_adnetworks/api_key_scrapers) aim to obtain
-the API credentials using the login details of the adnetwork. That is to
-say, they automate the retrieval of API credentials from adnetworks
-where possible.
+[API Key Scrapers][apsc] aim to obtain the API credentials using the login
+details of the adnetwork. That is to say, they automate the retrieval of
+API credentials from adnetworks where possible.
 
 So when an adnetwork says something like: ```To obtain your API key, first
 login, then go to your profile page, then click API key ...``` etc, a
@@ -84,3 +83,6 @@ Contributing to Gem
 [pry]: http://pryrepl.org/
 [rbenv]: https://github.com/rbenv/rbenv
 [rvm]: https://rvm.io/
+[simp]: /lib/adtekio_adnetworks/importers/cost
+[rimp]: /lib/adtekio_adnetworks/importers/revenue
+[apsc]: /lib/adtekio_adnetworks/api_key_scrapers
