@@ -87,7 +87,9 @@ Each importer requires credentials to obtain the costs, to find out
 what is required, you use the `required_credentials` class method:
 
 ```
-pry> AdtekioAdnetworks::CostImport.networks[:adcolony].required_credentials
+pry> importer_klass = AdtekioAdnetworks::CostImport.networks[:adcolony]
+=> AdtekioAdnetworks::Cost::Adcolony
+pry> importer_klass.required_credentials
 => [:api_key]
 ```
 
@@ -98,17 +100,23 @@ So having obtained the `api_key`, we can now use it by assigning the
 credentials (using a hash instance):
 
 ```
-pry> imp = AdtekioAdnetworks::CostImport.networks[:adcolony].new
+pry> importer = importer_klass.new
 => #<AdtekioAdnetworks::Cost::Adcolony:0x007f822a051730>
-pry> imp.credentials = { :api_key => "xxx" }
+pry> importer.credentials = { :api_key => "xxx" }
 => {:api_key=>"xxx"}
 ```
 
 After that, to obtain the costs/spends for the last five days:
 
 ```
-pry> imp.campaign_costs(Date.today-5, Date.today)
+pry> importer.campaign_costs(Date.today-5, Date.today)
+=> [{:date=>..., :campaign=>"xx", :adgroup=>"xx", :impressions=>..., :clicks=>..., :conversions=>..., :amount=>..., :target_country=>"..."},
+...etc
 ```
+
+The result is always an array of hashes. Hash can be different from importer
+to importer, however they always include the `amount`, `date`, `campaign`,
+and `clicks`.
 
 This applies to all cost importers, they have the same interface but
 different credentials.

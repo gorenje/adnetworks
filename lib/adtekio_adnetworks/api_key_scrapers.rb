@@ -20,12 +20,16 @@ module AdtekioAdnetworks
       agent.get(url)
     end
 
+    def _p(url, data)
+      agent.post(url, data)
+    end
+
     def get_and_match(url, regexp)
       _g(url).content =~ regexp && $1
     end
 
     def post_and_match(url, data, regexp)
-      agent.post(url, data).content =~ regexp && $1
+      _p(url, data).content =~ regexp && $1
     end
 
     def return_token_hash(&block)
@@ -38,9 +42,9 @@ module AdtekioAdnetworks
 
     def enter_login_details(form)
       form.fields.
-        select { |a| a.name =~ /[Ee]mail/ }.first.value = params["username"]
+        select { |a| a.name =~ /email/i }.first.value = params["username"]
       form.fields.
-        select {|a| a.name =~ /[Pp]assw(or)?d/}.first.value = params["password"]
+        select {|a| a.name =~ /passw(or)?d/i}.first.value = params["password"]
       form
     end
   end
