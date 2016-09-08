@@ -58,9 +58,62 @@ bundle
 rake shell
 ```
 
-Ideally your using either [rbenv][rbenv] or [rvm][rvm] to isolate your ruby
+Ideally you are using either [rbenv][rbenv] or [rvm][rvm] to isolate your ruby
 versions and gemsets.
 
+### Spends Importers
+
+*Note:* 'Spends Importer' and 'Cost Importer' are used interchangeably but
+represent the same thing: the money spent on marketing and user acquistion.
+
+Each cost importer is registered with the `AdtekioAdnetworks::CostImport`
+class, from there you can get a complete list of supported adnetworks:
+
+```
+pry> AdtekioAdnetworks::CostImport.networks
+=> {:adcolony=>AdtekioAdnetworks::Cost::Adcolony,
+ :adquant=>AdtekioAdnetworks::Cost::Adquant,
+ :appia=>AdtekioAdnetworks::Cost::Appia,
+ :applifier=>AdtekioAdnetworks::Cost::Applifier,
+ :applift=>AdtekioAdnetworks::Cost::Applift,
+ :applovin=>AdtekioAdnetworks::Cost::Applovin,
+ :bidmotion=>AdtekioAdnetworks::Cost::Bidmotion, ....
+```
+
+This returns a hash with network-name/importer-class pairs of all
+supported cost importers.
+
+Each importer requires credentials to obtain the costs, to find out
+what is required, you use the `required_credentials` class method:
+
+```
+pry> AdtekioAdnetworks::CostImport.networks[:adcolony].required_credentials
+=> [:api_key]
+```
+
+In this example, adcolony requires an api_key. This can either be obtained
+directly from adcolony or using [the corresponding api_scraper][adcapsc].
+
+So having obtained the `api_key`, we can now use it by assigning the
+credentials (using a hash instance):
+
+```
+pry> imp = AdtekioAdnetworks::CostImport.networks[:adcolony].new
+=> #<AdtekioAdnetworks::Cost::Adcolony:0x007f822a051730>
+pry> imp.credentials = { :api_key => "xxx" }
+=> {:api_key=>"xxx"}
+```
+
+After that, to obtain the costs/spends for the last five days:
+
+```
+pry> imp.campaign_costs(Date.today-5, Date.today)
+```
+
+This applies to all cost importers, they have the same interface but
+different credentials.
+
+### API Key Scrapers
 
 License
 ---
@@ -86,3 +139,4 @@ Contributing to Gem
 [simp]: /lib/adtekio_adnetworks/importers/cost
 [rimp]: /lib/adtekio_adnetworks/importers/revenue
 [apsc]: /lib/adtekio_adnetworks/api_key_scrapers
+[adcapsc]: /lib/adtekio_adnetworks/api_key_scrapers/adcolony.rb
