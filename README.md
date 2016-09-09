@@ -1,5 +1,4 @@
-Adtek.io Adnetworks
-===
+# Adtek.io Adnetworks
 
 Dealing with Mobile Advertising Networks can be a non-trivial task, especially
 when it comes to integrating them into reporting tools: each has their own
@@ -10,17 +9,37 @@ to obtain the right credentials for the right report. Where possible, this
 gem provides scrapers for adnetworks to obtain API credentials in a transparent
 and common manner.
 
+## Raison d'être
 
-Importers
----
+Why this gem? The aim is to make mobile advertising and mobile user acquistion
+more flexible and cost effective.
+
+In a sense, this gem can help become your own adnetwork aggregator by allowing
+you to easily try out new adnetworks without having to integrate their
+respective SDKs. The gem also provides the raw data for comparing the
+performance of adnetworks and allowing you to make informed choices.
+
+Of course, on its own, this gem does does not provide the complete picture.
+What this gem does is provide the raw data in a unified manner so that other
+tools can provide aggegration and comparisons across a number of
+adnetworks. One such tool is [adtek.io][adtek] which provides the neccessary
+infrastructure for flexibility and cost effectiveness for mobile
+marketing and user acquistion.
+
+On a technical level, this gem aggregates together all code related to
+interfacing with the adnetworks. This includes importing their reporting
+data, obtaining their [API][api] credentials (which are often confusing and
+difficult to obtain) and providing networks with user tracking data so that
+they can continue to optimise their campaigns.
+
+## Importers
 
 - [Spends importers][simp] which retrieve spending reports from
   various networks.
 - [Revenue importers][rimp] which retrieve revenue reports from various
   adnetworks.
 
-API Key Scrapers
----
+## API Key Scrapers
 
 [API Key Scrapers][apsc] aim to obtain the API credentials using the login
 details of the adnetwork. That is to say, they automate the retrieval of
@@ -30,8 +49,11 @@ So when an adnetwork says something like: ```To obtain your API key, first
 login, then go to your profile page, then click API key ...``` etc, a
 scraper will automagically do that to obtain the API credentials.
 
-Integration
----
+## Postbacks
+
+TODO.
+
+## Integration
 
 To include the gem in your project, add this to your favourite Gemfile:
 
@@ -45,8 +67,7 @@ then run bundle and require the gem:
 require 'adtekio_adnetworks'
 ```
 
-Usage
----
+## Usage
 
 You can play around with the gem by cloning it and then running a
 [pry][pry] shell:
@@ -161,18 +182,32 @@ pry> AdtekioAdnetworks::ApiKeyScrapers.supporter_adnetworks
 
 ### Postbacks
 
-TODO.
+Postback definitions need to be seen in the context of how mobile advertising
+and user acquistion currently works. Postbacks are very specific and if the
+context is not clear, then they make little or no sense!
+
+Currently if you want to mobile advertising for your application, you need
+to choose an adnetwork (e.g. adcolony, unilead, etc), sign a deal with them
+and integrate their [SDK][sdk] into your application. Then you can start
+your campaigns to obtain users.
+
+If you then discover that their campaigns are not performing, you end up
+repeating the cycle and integrating some other adnetworks SDK into your
+application.
+
+Of course, there are already aggregators on the market (e.g. singular,
+adjust, tenjin, etc) however there you have a similar issues except you
+are relying on a group of adnetworks chosen by the aggregator.
 
 
-License
----
+
+## License
 
 Released under the GPLv2.
 
 See https://www.gnu.org/licenses/gpl-2.0 for details.
 
-Contributing to Gem
----
+## Contributing to Gem
 
 1. Fork it ( https://github.com/adtekio/adnetworks/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
@@ -182,6 +217,7 @@ Contributing to Gem
 6. Please try not to mess with the Rakefile, version, or history
 7. Create new Pull Request
 
+<!-- references, link endpoints, no need to look any further -->
 [pry]: http://pryrepl.org/
 [rbenv]: https://github.com/rbenv/rbenv
 [rvm]: https://rvm.io/
@@ -190,3 +226,6 @@ Contributing to Gem
 [apsc]: /lib/adtekio_adnetworks/api_key_scrapers
 [adcapsc]: /lib/adtekio_adnetworks/api_key_scrapers/adcolony.rb
 [libscp]: /lib/adtekio_adnetworks/api_key_scrapers
+[sdk]: https://en.wikipedia.org/wiki/Software_development_kit
+[adtek]: https://www.adtek.io
+[api]: https://en.wikipedia.org/wiki/Application_programming_interface
