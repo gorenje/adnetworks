@@ -121,6 +121,10 @@ and `clicks`.
 This interface applies to all cost importers, they have the same interface but
 different credentials.
 
+### Revenue Importers
+
+TODO.
+
 ### API Key Scrapers
 
 Providing a unified method of obtaining API credentials. Since most adnetworks
@@ -144,12 +148,20 @@ The `login_details` is always a hash with "username" and "password" as key.
 Username is whatever the adnetworks requires to login, i.e it could be
 an email or a username or a banana, whatever is required by the adnetwork.
 
+`obtain_key_for` always returns a hash but what it contains is adnetwork
+specific. However, for those that return one value (i.e. an api key or token),
+the hash always is for the form `{ :token => 'api_key' }`.
+
 To get a list of all supported networks:
 
 ```
 pry> AdtekioAdnetworks::ApiKeyScrapers.supporter_adnetworks
 => ["adcolony", "applift", "applovin", "chartboost", "crossinstall", "leadbolt", "loopme", "mdotm", "revmob", "tapjoy", "unilead", "vungle"]
 ```
+
+### Postbacks
+
+TODO.
 
 
 License
