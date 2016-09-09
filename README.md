@@ -118,10 +118,39 @@ The result is always an array of hashes. Hash can be different from importer
 to importer, however they always include the `amount`, `date`, `campaign`,
 and `clicks`.
 
-This applies to all cost importers, they have the same interface but
+This interface applies to all cost importers, they have the same interface but
 different credentials.
 
 ### API Key Scrapers
+
+Providing a unified method of obtaining API credentials. Since most adnetworks
+do not use login details for their APIs, a user always has to obtain an
+their API credentials from the adnetworks.
+
+Since this can be a confusing task (since most adnetworks squirrel their
+API credentials away somewhere non-intuitive) but using an API scraper,
+this becomes as easy as providing username & password and pressing a
+button!
+
+All [supported adnetworks][libscp] all have the same interface:
+
+```
+pry> scraper = AdtekioAdnetworks::ApiKeyScrapers.new
+pry> login_details = {"username" => "username used to login", "password" => "password used to login" }
+pry> credentials = scraper.obtain_key_for("applift",login_details))
+```
+
+The `login_details` is always a hash with "username" and "password" as key.
+Username is whatever the adnetworks requires to login, i.e it could be
+an email or a username or a banana, whatever is required by the adnetwork.
+
+To get a list of all supported networks:
+
+```
+pry> AdtekioAdnetworks::ApiKeyScrapers.supporter_adnetworks
+=> ["adcolony", "applift", "applovin", "chartboost", "crossinstall", "leadbolt", "loopme", "mdotm", "revmob", "tapjoy", "unilead", "vungle"]
+```
+
 
 License
 ---
@@ -148,3 +177,4 @@ Contributing to Gem
 [rimp]: /lib/adtekio_adnetworks/importers/revenue
 [apsc]: /lib/adtekio_adnetworks/api_key_scrapers
 [adcapsc]: /lib/adtekio_adnetworks/api_key_scrapers/adcolony.rb
+[libscp]: /lib/adtekio_adnetworks/api_key_scrapers
