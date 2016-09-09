@@ -32,26 +32,29 @@ data, obtaining their [API][api] credentials (which are often confusing and
 difficult to obtain) and providing networks with user tracking data so that
 they can continue to optimise their campaigns.
 
-## Importers
+## Features
 
-- [Spends importers][simp] which retrieve spending reports from
-  various networks.
-- [Revenue importers][rimp] which retrieve revenue reports from various
-  adnetworks.
+This gem provides four main features when dealing with mobile advertising
+networks (adnetworks):
 
-## API Key Scrapers
+1. [Spends importers][simp] which retrieve spending reports from
+   various networks.
 
-[API Key Scrapers][apsc] aim to obtain the API credentials using the login
-details of the adnetwork. That is to say, they automate the retrieval of
-API credentials from adnetworks where possible.
+2. [Revenue importers][rimp] which retrieve revenue reports from various
+   adnetworks.
 
-So when an adnetwork says something like: ```To obtain your API key, first
-login, then go to your profile page, then click API key ...``` etc, a
-scraper will automagically do that to obtain the API credentials.
+3. [API Key Scrapers][apsc] aim to obtain the API credentials using the login
+   details of the adnetwork. That is to say, they automate the retrieval of
+   API credentials from adnetworks where possible.
 
-## Postbacks
+   So when an adnetwork says something like: ```To obtain your API key, first
+   login, then go to your profile page, then click API key ...``` etc, a
+   scraper will automagically do that to obtain the API credentials.
 
-TODO.
+4. [Postbacks][pblnk] provide callback links for various adnetworks so
+   that user tracking does not come from the mobile application but
+   from a backend server. Making the need to integrate a adnetworks
+   [SDK][sdk] redundant.
 
 ## Integration
 
@@ -218,14 +221,15 @@ See https://www.gnu.org/licenses/gpl-2.0 for details.
 7. Create new Pull Request
 
 <!-- references, link endpoints, no need to look any further -->
+[adtek]: https://www.adtek.io
+[adcapsc]: /lib/adtekio_adnetworks/api_key_scrapers/adcolony.rb
+[api]: https://en.wikipedia.org/wiki/Application_programming_interface
+[apsc]: /lib/adtekio_adnetworks/api_key_scrapers
+[libscp]: /lib/adtekio_adnetworks/api_key_scrapers
+[pblnk]: /lib/adtekio_adnetworks/postbacks
 [pry]: http://pryrepl.org/
 [rbenv]: https://github.com/rbenv/rbenv
-[rvm]: https://rvm.io/
-[simp]: /lib/adtekio_adnetworks/importers/cost
 [rimp]: /lib/adtekio_adnetworks/importers/revenue
-[apsc]: /lib/adtekio_adnetworks/api_key_scrapers
-[adcapsc]: /lib/adtekio_adnetworks/api_key_scrapers/adcolony.rb
-[libscp]: /lib/adtekio_adnetworks/api_key_scrapers
+[rvm]: https://rvm.io/
 [sdk]: https://en.wikipedia.org/wiki/Software_development_kit
-[adtek]: https://www.adtek.io
-[api]: https://en.wikipedia.org/wiki/Application_programming_interface
+[simp]: /lib/adtekio_adnetworks/importers/cost

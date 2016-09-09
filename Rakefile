@@ -14,13 +14,13 @@ require 'rake'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "adtekio_adnetworks"
-  gem.homepage = "https://github.com/adtekio/adnetworks.git"
-  gem.license = "MIT"
-  gem.summary = %Q{Encapsulate adnetworks and their importers.}
+  gem.name        = "adtekio_adnetworks"
+  gem.homepage    = "https://github.com/adtekio/adnetworks"
+  gem.license     = "MIT"
+  gem.summary     = %Q{Encapsulate adnetworks and their importers.}
   gem.description = %Q{Encapsulate adnetworks and their importers.}
-  gem.email = "gerrit@eccrine.io"
-  gem.authors = ["Gerrit Riessen"]
+  gem.email       = "gerrit.riessen@gmail.com"
+  gem.authors     = ["Gerrit Riessen"]
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
