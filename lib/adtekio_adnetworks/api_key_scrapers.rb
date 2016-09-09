@@ -32,12 +32,12 @@ module AdtekioAdnetworks
       _p(url, data).content =~ regexp && $1
     end
 
-    def return_token_hash(&block)
-      { :token => yield }
-    end
-
     def return_result_hash(&block)
       {}.tap { |result| yield(result) }
+    end
+
+    def return_token_hash(&block)
+      return_result_hash { |r| r[:token] = yield }
     end
 
     def enter_login_details(form)
