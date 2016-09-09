@@ -14,9 +14,9 @@ and common manner.
 Why this gem? The aim is to make mobile advertising and mobile user acquistion
 more flexible and cost effective.
 
-In a sense, this gem can help become your own adnetwork aggregator by allowing
-you to easily try out new adnetworks without having to integrate their
-respective SDKs. The gem also provides the raw data for comparing the
+In a sense, this gem can help become your own mobile adnetwork aggregator
+by allowing you to easily try out new adnetworks without having to integrate
+their respective SDKs. The gem also provides the raw data for comparing the
 performance of adnetworks and allowing you to make informed choices.
 
 Of course, on its own, this gem does does not provide the complete picture.
@@ -147,7 +147,67 @@ different credentials.
 
 ### Revenue Importers
 
-TODO.
+Revenue importers retrieve data related to the revenue your mobile
+application is making by showing advertising to your users. Basically
+your revenue for an adnetwork is offsetting the cost for using that
+adnetwork.
+
+You might think that is wonderful, but you have to think about what
+advertising they are showing your users. It might well be advertising for
+your competition, so that you the revenue you are obtaining is actually
+compensation for losing your users.
+
+Using the revenue importers is very similar to using the cost importers,
+first you get a list of supported adnetworks:
+
+```
+pry> AdtekioAdnetworks::RevenueImport.networks
+=> {:adcolony=>AdtekioAdnetworks::Revenue::Adcolony,
+ :applifier=>AdtekioAdnetworks::Revenue::Applifier,
+ :applovin=>AdtekioAdnetworks::Revenue::Applovin,
+ :chartboost=>AdtekioAdnetworks::Revenue::Chartboost, ....
+```
+
+Then you choice one for which you would like to import the revenue data:
+
+```
+pry> importer_klass = AdtekioAdnetworks::RevenueImport.networks[:chartboost]
+=> AdtekioAdnetworks::Revenue::Chartboost
+pry> importer_klass.required_credentials
+=> [:user_id, :signature]
+```
+
+So we see that we need a `user_id` and `signature` for Chartboost. Since
+we only have our login details, we can use the API key scraper to obtain
+the user_id and signature:
+
+```
+pry> login_details = { "username" => "xxx", "password" => "yyy" }
+=> {"username"=>"xxx", "password"=>"yyy"}
+pry> creds = AdtekioAdnetworks::ApiKeyScrapers.new.obtain_key_for("chartboost", login_details)
+=> {"user_id"=>"zzz", "signature"=>"aaa"}
+```
+
+Now we can start the chartboost revenue importer for the last five days:
+
+```
+pry> importer = importer_klass.new
+=> #<AdtekioAdnetworks::Revenue::Chartboost:0x007ff1039c3460>
+pry> importer.credentials = creds
+=> {"user_id"=>"zzz", "signature"=>"aaa"}
+pry> importer.revenues(Date.today-5, Date.today)
+=> [{:impressions=>...,
+  :amount=>...,
+  :date=>...,
+  :appname=>....,
+  :not_matched=>....},
+```
+
+What the revenue importer returns is an array of hashes containing amounts
+and dates. Data is always aggregated by day.
+
+For other adnetworks it is very similar, so just rinse and repeat for all
+the adnetworks you have.
 
 ### API Key Scrapers
 
@@ -196,12 +256,48 @@ your campaigns to obtain users.
 
 If you then discover that their campaigns are not performing, you end up
 repeating the cycle and integrating some other adnetworks SDK into your
-application.
+application. In a certain sense, SDKs have become a [vendor lock-in][vnli]
+for the mobile marketing sector.
 
 Of course, there are already aggregators on the market (e.g. singular,
 adjust, tenjin, etc) however there you have a similar issues except you
-are relying on a group of adnetworks chosen by the aggregator.
+are relying on a group of adnetworks chosen by the aggregator. If campaigns
+do not perform, you still need to look for something else.
 
+Anyone who has developed an mobile application knows that integrating SDKs
+is a non-trival task and, in the case of Apple, results in delays when
+releasing an application.
+
+So the question becomes how to avoid the overhead of integrating adnetwork
+SDKs but still have the flexibility of trying out different adnetworks?
+
+To answer this, we need to know what these SDKs actually do. Basically they
+provide user-tracking data for adnetworks to optimise their campaigns
+(and also allow them to build up user profiles since adnetworks collect a
+lot of data from lots of mobile applications).
+
+Most (all?) of the time this data, collected from your users, is not
+provided to you. Instead, if you are doing [A/B tests][abtst] and trying
+to optimise your application for your users, you will be doing your own
+user-tracking.
+
+So your application will end up doing duplicate user tracking, which does
+seem to be a bit of a waste (even in the digital virtual world).
+
+This is where postbacks come in, they are simply the same tracking calls
+that an adnetwork would do except you can trigger them. So now,
+putting it all together, the intention is that since you are doing your own
+user tracking, you can pass these tracking calls onto the adnetworks from
+your tracking server and not from your mobile application.
+
+Everybody wins: no more duplicate tracking from your mobile application,
+the adnetworks get their tracking calls (in addition, these can become
+more application specific) and the adnetworks can continue to optimise
+their campaigns for your application.
+
+If, on the other hand, your are not doing your own user tracking, then
+postbacks are no benefit to you whatsoever. However, you could start using
+[adtek.io][adtek] which also provides tracking and a single SDK.
 
 
 ## License
@@ -221,6 +317,7 @@ See https://www.gnu.org/licenses/gpl-2.0 for details.
 7. Create new Pull Request
 
 <!-- references, link endpoints, no need to look any further -->
+[abtst]: https://en.wikipedia.org/wiki/A/B_testing
 [adtek]: https://www.adtek.io
 [adcapsc]: /lib/adtekio_adnetworks/api_key_scrapers/adcolony.rb
 [api]: https://en.wikipedia.org/wiki/Application_programming_interface
@@ -233,3 +330,4 @@ See https://www.gnu.org/licenses/gpl-2.0 for details.
 [rvm]: https://rvm.io/
 [sdk]: https://en.wikipedia.org/wiki/Software_development_kit
 [simp]: /lib/adtekio_adnetworks/importers/cost
+[vnli]: https://en.wikipedia.org/wiki/Vendor_lock-in
