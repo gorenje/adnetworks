@@ -149,8 +149,8 @@ Username is whatever the adnetworks requires to login, i.e it could be
 an email or a username or a banana, whatever is required by the adnetwork.
 
 `obtain_key_for` always returns a hash but what it contains is adnetwork
-specific. However, for those that return one value (i.e. an api key or token),
-the hash always is for the form `{ :token => 'api_key' }`.
+specific. However, for those adnetworks that return one value (i.e. an api
+key or token), the hash always is for the form `{ :token => 'api key value' }`.
 
 To get a list of all supported networks:
 

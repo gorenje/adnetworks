@@ -16,7 +16,7 @@ module AdtekioAdnetworks
 
     def self.supporter_adnetworks
       public_instance_methods.
-        select {|a| a =~ /key_for_/ }.map { |a|a.to_s.sub(/key_for_/,'') }
+        select { |a| a =~ /key_for_/ }.map { |a| a.to_s.sub(/key_for_/,'') }
     end
 
     protected
